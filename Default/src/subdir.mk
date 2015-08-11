@@ -1,0 +1,270 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+O_SRCS += \
+../src/QCADesigner-about.o \
+../src/QCADesigner-bistable_properties_dialog.o \
+../src/QCADesigner-bistable_simulation.o \
+../src/QCADesigner-bus_layout_dialog.o \
+../src/QCADesigner-callbacks.o \
+../src/QCADesigner-coherence_vector.o \
+../src/QCADesigner-coherence_vector_properties_dialog.o \
+../src/QCADesigner-custom_widgets.o \
+../src/QCADesigner-design.o \
+../src/QCADesigner-exp_array.o \
+../src/QCADesigner-exp_pixmap.o \
+../src/QCADesigner-file_selection_window.o \
+../src/QCADesigner-fileio.o \
+../src/QCADesigner-fileio_helpers.o \
+../src/QCADesigner-generic_utils.o \
+../src/QCADesigner-graph_dialog.o \
+../src/QCADesigner-graph_dialog_callbacks.o \
+../src/QCADesigner-graph_dialog_data.o \
+../src/QCADesigner-graph_dialog_interface.o \
+../src/QCADesigner-graph_dialog_widget_data.o \
+../src/QCADesigner-gtk_preamble.o \
+../src/QCADesigner-honeycomb_thresholds_dialog.o \
+../src/QCADesigner-hsl2rgb.o \
+../src/QCADesigner-interface.o \
+../src/QCADesigner-layer_mapping_dialog.o \
+../src/QCADesigner-layer_order_dialog.o \
+../src/QCADesigner-layer_properties_dialog.o \
+../src/QCADesigner-main.o \
+../src/QCADesigner-print.o \
+../src/QCADesigner-print_graph.o \
+../src/QCADesigner-print_graph_properties_dialog.o \
+../src/QCADesigner-print_preview.o \
+../src/QCADesigner-print_properties_dialog.o \
+../src/QCADesigner-print_properties_dialog_interface.o \
+../src/QCADesigner-print_util.o \
+../src/QCADesigner-recent_files.o \
+../src/QCADesigner-scale_dialog.o \
+../src/QCADesigner-selection_renderer.o \
+../src/QCADesigner-selection_undo.o \
+../src/QCADesigner-sim_engine_setup_dialog.o \
+../src/QCADesigner-sim_fault_setup_dialog.o \
+../src/QCADesigner-simulation.o \
+../src/QCADesigner-simulation_data.o \
+../src/QCADesigner-support.o \
+../src/QCADesigner-translate_selection_dialog.o \
+../src/QCADesigner-vector_table.o \
+../src/QCADesigner-vector_table_options_dialog.o \
+../src/QCADesigner-vector_table_options_dialog_callbacks.o \
+../src/QCADesigner-vector_table_options_dialog_data.o \
+../src/QCADesigner-vector_table_options_dialog_interface.o \
+../src/batch_sim-bistable_simulation.o \
+../src/batch_sim-coherence_vector.o \
+../src/batch_sim-custom_widgets.o \
+../src/batch_sim-design.o \
+../src/batch_sim-exp_array.o \
+../src/batch_sim-fileio.o \
+../src/batch_sim-fileio_helpers.o \
+../src/batch_sim-generic_utils.o \
+../src/batch_sim-graph_dialog_widget_data.o \
+../src/batch_sim-hsl2rgb.o \
+../src/batch_sim-main_batch_sim.o \
+../src/batch_sim-simulation.o \
+../src/batch_sim-simulation_data.o \
+../src/graph_dialog-bus_layout_dialog.o \
+../src/graph_dialog-custom_widgets.o \
+../src/graph_dialog-design.o \
+../src/graph_dialog-exp_array.o \
+../src/graph_dialog-exp_pixmap.o \
+../src/graph_dialog-file_selection_window.o \
+../src/graph_dialog-fileio.o \
+../src/graph_dialog-fileio_helpers.o \
+../src/graph_dialog-generic_utils.o \
+../src/graph_dialog-graph_dialog.o \
+../src/graph_dialog-graph_dialog_callbacks.o \
+../src/graph_dialog-graph_dialog_data.o \
+../src/graph_dialog-graph_dialog_interface.o \
+../src/graph_dialog-graph_dialog_widget_data.o \
+../src/graph_dialog-gtk_preamble.o \
+../src/graph_dialog-honeycomb_thresholds_dialog.o \
+../src/graph_dialog-hsl2rgb.o \
+../src/graph_dialog-main_graph_dialog.o \
+../src/graph_dialog-print.o \
+../src/graph_dialog-print_graph.o \
+../src/graph_dialog-print_graph_properties_dialog.o \
+../src/graph_dialog-print_preview.o \
+../src/graph_dialog-print_util.o \
+../src/graph_dialog-simulation_data.o \
+../src/graph_dialog-support.o 
+
+C_SRCS += \
+../src/about.c \
+../src/bistable_properties_dialog.c \
+../src/bistable_simulation.c \
+../src/bus_layout_dialog.c \
+../src/callbacks.c \
+../src/coherence_vector.c \
+../src/coherence_vector_properties_dialog.c \
+../src/custom_widgets.c \
+../src/design.c \
+../src/exp_array.c \
+../src/exp_pixmap.c \
+../src/file_selection_window.c \
+../src/fileio.c \
+../src/fileio_helpers.c \
+../src/generic_utils.c \
+../src/graph_dialog.c \
+../src/graph_dialog_callbacks.c \
+../src/graph_dialog_data.c \
+../src/graph_dialog_interface.c \
+../src/graph_dialog_widget_data.c \
+../src/gtk_preamble.c \
+../src/honeycomb_thresholds_dialog.c \
+../src/hsl2rgb.c \
+../src/interface.c \
+../src/layer_mapping_dialog.c \
+../src/layer_order_dialog.c \
+../src/layer_properties_dialog.c \
+../src/main.c \
+../src/main_batch_sim.c \
+../src/main_graph_dialog.c \
+../src/print.c \
+../src/print_graph.c \
+../src/print_graph_properties_dialog.c \
+../src/print_preview.c \
+../src/print_properties_dialog.c \
+../src/print_properties_dialog_interface.c \
+../src/print_util.c \
+../src/recent_files.c \
+../src/scale_dialog.c \
+../src/selection_renderer.c \
+../src/selection_undo.c \
+../src/sim_engine_setup_dialog.c \
+../src/sim_fault_setup_dialog.c \
+../src/sim_type_setup_dialog.c \
+../src/simulation.c \
+../src/simulation_data.c \
+../src/support.c \
+../src/translate_selection_dialog.c \
+../src/vector_table.c \
+../src/vector_table_options_dialog.c \
+../src/vector_table_options_dialog_callbacks.c \
+../src/vector_table_options_dialog_data.c \
+../src/vector_table_options_dialog_interface.c 
+
+OBJS += \
+./src/about.o \
+./src/bistable_properties_dialog.o \
+./src/bistable_simulation.o \
+./src/bus_layout_dialog.o \
+./src/callbacks.o \
+./src/coherence_vector.o \
+./src/coherence_vector_properties_dialog.o \
+./src/custom_widgets.o \
+./src/design.o \
+./src/exp_array.o \
+./src/exp_pixmap.o \
+./src/file_selection_window.o \
+./src/fileio.o \
+./src/fileio_helpers.o \
+./src/generic_utils.o \
+./src/graph_dialog.o \
+./src/graph_dialog_callbacks.o \
+./src/graph_dialog_data.o \
+./src/graph_dialog_interface.o \
+./src/graph_dialog_widget_data.o \
+./src/gtk_preamble.o \
+./src/honeycomb_thresholds_dialog.o \
+./src/hsl2rgb.o \
+./src/interface.o \
+./src/layer_mapping_dialog.o \
+./src/layer_order_dialog.o \
+./src/layer_properties_dialog.o \
+./src/main.o \
+./src/main_batch_sim.o \
+./src/main_graph_dialog.o \
+./src/print.o \
+./src/print_graph.o \
+./src/print_graph_properties_dialog.o \
+./src/print_preview.o \
+./src/print_properties_dialog.o \
+./src/print_properties_dialog_interface.o \
+./src/print_util.o \
+./src/recent_files.o \
+./src/scale_dialog.o \
+./src/selection_renderer.o \
+./src/selection_undo.o \
+./src/sim_engine_setup_dialog.o \
+./src/sim_fault_setup_dialog.o \
+./src/sim_type_setup_dialog.o \
+./src/simulation.o \
+./src/simulation_data.o \
+./src/support.o \
+./src/translate_selection_dialog.o \
+./src/vector_table.o \
+./src/vector_table_options_dialog.o \
+./src/vector_table_options_dialog_callbacks.o \
+./src/vector_table_options_dialog_data.o \
+./src/vector_table_options_dialog_interface.o 
+
+C_DEPS += \
+./src/about.d \
+./src/bistable_properties_dialog.d \
+./src/bistable_simulation.d \
+./src/bus_layout_dialog.d \
+./src/callbacks.d \
+./src/coherence_vector.d \
+./src/coherence_vector_properties_dialog.d \
+./src/custom_widgets.d \
+./src/design.d \
+./src/exp_array.d \
+./src/exp_pixmap.d \
+./src/file_selection_window.d \
+./src/fileio.d \
+./src/fileio_helpers.d \
+./src/generic_utils.d \
+./src/graph_dialog.d \
+./src/graph_dialog_callbacks.d \
+./src/graph_dialog_data.d \
+./src/graph_dialog_interface.d \
+./src/graph_dialog_widget_data.d \
+./src/gtk_preamble.d \
+./src/honeycomb_thresholds_dialog.d \
+./src/hsl2rgb.d \
+./src/interface.d \
+./src/layer_mapping_dialog.d \
+./src/layer_order_dialog.d \
+./src/layer_properties_dialog.d \
+./src/main.d \
+./src/main_batch_sim.d \
+./src/main_graph_dialog.d \
+./src/print.d \
+./src/print_graph.d \
+./src/print_graph_properties_dialog.d \
+./src/print_preview.d \
+./src/print_properties_dialog.d \
+./src/print_properties_dialog_interface.d \
+./src/print_util.d \
+./src/recent_files.d \
+./src/scale_dialog.d \
+./src/selection_renderer.d \
+./src/selection_undo.d \
+./src/sim_engine_setup_dialog.d \
+./src/sim_fault_setup_dialog.d \
+./src/sim_type_setup_dialog.d \
+./src/simulation.d \
+./src/simulation_data.d \
+./src/support.d \
+./src/translate_selection_dialog.d \
+./src/vector_table.d \
+./src/vector_table_options_dialog.d \
+./src/vector_table_options_dialog_callbacks.d \
+./src/vector_table_options_dialog_data.d \
+./src/vector_table_options_dialog_interface.d 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+src/%.o: ../src/%.c
+	@echo 'Building file: $<'
+	@echo 'Invoking: GCC C Compiler'
+	gcc -O2 -g -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+

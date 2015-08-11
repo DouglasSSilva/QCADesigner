@@ -1,0 +1,163 @@
+./actions/select.c:82:        if (obj->bSelected)
+./actions/rotate.c:53:      world_to_real_rect (&(htobj->bounding_box), &rcReal) ;
+./design.c:1057:              if (!(obj->bSelected))
+./design.c:1174:              dxMin = MIN (dxMin, obj->bounding_box.xWorld) ;
+./design.c:1175:              dyMin = MIN (dxMin, obj->bounding_box.yWorld) ;
+./design.c:1180:              dxMin = obj->bounding_box.xWorld ;
+./design.c:1181:              dyMin = obj->bounding_box.yWorld ;
+./fileio.c:395:      obj->x = g_ascii_strtod (pszValue, NULL) ;
+./fileio.c:398:      obj->y = g_ascii_strtod (pszValue, NULL) ;
+./fileio.c:401:      obj->bounding_box.xWorld = g_ascii_strtod (pszValue, NULL) ;
+./fileio.c:404:      obj->bounding_box.yWorld = g_ascii_strtod (pszValue, NULL) ;
+./fileio.c:407:      obj->bounding_box.cxWorld = g_ascii_strtod (pszValue, NULL) - obj->bounding_box.xWorld ;
+./fileio.c:410:      obj->bounding_box.cyWorld = g_ascii_strtod (pszValue, NULL) - obj->bounding_box.yWorld ;
+./objects/QCADSubstrate.c:178:  obj->x = (x + cx) / 2 ;
+./objects/QCADSubstrate.c:179:  obj->y = (y + cy) / 2 ;
+./objects/QCADSubstrate.c:180:  obj->bounding_box.xWorld = x ;
+./objects/QCADSubstrate.c:181:  obj->bounding_box.yWorld = y ;
+./objects/QCADSubstrate.c:182:  obj->bounding_box.cxWorld = cx ;
+./objects/QCADSubstrate.c:183:  obj->bounding_box.cyWorld = cy ;
+./objects/QCADSubstrate.c:214:      obj->bounding_box.xWorld, obj->bounding_box.yWorld, obj->bounding_box.cxWorld, obj->bounding_box.cyWorld) ;
+./objects/QCADSubstrate.c:257:  world_to_real_rect (&(obj->bounding_box), &rc) ;
+./objects/QCADSubstrate.c:276:    xIdxBeg = MAX (0, ceil ((xTopView - obj->bounding_box.xWorld - dot_spacing) / dot_spacing) - 1) ;
+./objects/QCADSubstrate.c:277:    yIdxBeg = MAX (0, ceil ((yTopView - obj->bounding_box.yWorld - dot_spacing) / dot_spacing) - 1) ;
+./objects/QCADSubstrate.c:278:    xIdxEnd = floor ((obj->bounding_box.cxWorld - dot_spacing) / dot_spacing) -
+./objects/QCADSubstrate.c:279:      MAX (0, ceil ((obj->bounding_box.cxWorld + obj->bounding_box.xWorld - xBotView - dot_spacing) / dot_spacing)) ;
+./objects/QCADSubstrate.c:280:    yIdxEnd = floor ((obj->bounding_box.cyWorld - dot_spacing) / dot_spacing) -
+./objects/QCADSubstrate.c:281:      MAX (0, ceil ((obj->bounding_box.cyWorld + obj->bounding_box.yWorld - yBotView - dot_spacing) / dot_spacing)) ;
+./objects/QCADSubstrate.c:290:          pts[idx].x = world_to_real_x (obj->bounding_box.xWorld + (Nix2 + 1) * dot_spacing) ;
+./objects/QCADSubstrate.c:291:          pts[idx].y = world_to_real_y (obj->bounding_box.yWorld + (Nix1 + 1) * dot_spacing) ;
+./objects/QCADSubstrate.c:297:  gdk_gc_set_foreground (gc, obj->bSelected ? &(QCAD_DESIGN_OBJECT_GET_CLASS (obj)->clrSelected) : &(obj->clr)) ;
+./objects/QCADRuler.c:178:  gdk_gc_set_foreground (gc, &(obj->clr)) ;
+./objects/QCADRuler.c:214:        lblGrad = get_label_from_array (ruler->labels, (ruler->icLabelsVisible)++, dCurrentGrad, &(obj->clr)) ;
+./objects/QCADRuler.c:222:    lblGrad = get_label_from_array (ruler->labels, (ruler->icLabelsVisible)++, ruler->ruler_bounding_box.cyWorld, &(obj->clr)) ;
+./objects/QCADRuler.c:253:        lblGrad = get_label_from_array (ruler->labels, (ruler->icLabelsVisible)++, dCurrentGrad, &(obj->clr)) ;
+./objects/QCADRuler.c:261:    lblGrad = get_label_from_array (ruler->labels, (ruler->icLabelsVisible)++, ruler->ruler_bounding_box.cxWorld, &(obj->clr)) ;
+./objects/QCADRuler.c:373:    r = ((double)(obj->clr.red)) / 65535.0,
+./objects/QCADRuler.c:374:    g = ((double)(obj->clr.green)) / 65535.0,
+./objects/QCADRuler.c:375:    b = ((double)(obj->clr.blue)) / 65535.0 ;
+./objects/QCADRuler.c:379:    memcpy (&clr, &(obj->clr), sizeof (GdkColor)) ;
+./objects/QCADRuler.c:383:    b = ((double)(obj->clr.blue)) / 65536.0 ; // .blue has become the luminance
+./objects/QCADRuler.c:387:    obj->bounding_box.xWorld, obj->bounding_box.yWorld, obj->bounding_box.cxWorld, obj->bounding_box.cyWorld, r, g, b) ;
+./objects/QCADDesignObject.c:286:    qcad_design_object_move (obj, xWorld - obj->x, yWorld - obj->y) ;
+./objects/QCADDesignObject.c:504:    x = obj->x * m11 + obj->y * m21,
+./objects/QCADDesignObject.c:505:    y = obj->x * m12 + obj->y * m22,
+./objects/QCADDesignObject.c:506:    xTop = obj->bounding_box.xWorld,
+./objects/QCADDesignObject.c:507:    yTop = obj->bounding_box.yWorld,
+./objects/QCADDesignObject.c:508:    xBot = xTop + obj->bounding_box.cxWorld,
+./objects/QCADDesignObject.c:509:    yBot = yTop + obj->bounding_box.cyWorld ;
+./objects/QCADDesignObject.c:511:  obj->x = x ;
+./objects/QCADDesignObject.c:512:  obj->y = y ;
+./objects/QCADDesignObject.c:526:  obj->bounding_box.xWorld  = MIN (xTop, xBot) ;
+./objects/QCADDesignObject.c:527:  obj->bounding_box.yWorld  = MIN (yTop, yBot) ;
+./objects/QCADDesignObject.c:528:  obj->bounding_box.cxWorld = MAX (xTop, xBot) - obj->bounding_box.xWorld ;
+./objects/QCADDesignObject.c:529:  obj->bounding_box.cyWorld = MAX (yTop, yBot) - obj->bounding_box.yWorld ;
+./objects/QCADDesignObject.c:538:      obj->bounding_box.xWorld,
+./objects/QCADDesignObject.c:539:      obj->bounding_box.yWorld,
+./objects/QCADDesignObject.c:540:      obj->bounding_box.cxWorld,
+./objects/QCADDesignObject.c:541:      obj->bounding_box.cyWorld,
+./objects/QCADDesignObject.c:542:        ((double)(obj->clr.red)) / 65536.0,
+./objects/QCADDesignObject.c:543:        ((double)(obj->clr.green)) / 65536.0,
+./objects/QCADDesignObject.c:544:        ((double)(obj->clr.blue)) / 65536.0) ;
+./objects/QCADDesignObject.c:547:    memcpy (&clr, &(obj->clr), sizeof (GdkColor)) ;
+./objects/QCADDesignObject.c:550:      obj->bounding_box.xWorld,
+./objects/QCADDesignObject.c:551:      obj->bounding_box.yWorld,
+./objects/QCADDesignObject.c:552:      obj->bounding_box.cxWorld,
+./objects/QCADDesignObject.c:553:      obj->bounding_box.cyWorld,
+./objects/QCADDesignObject.c:554:      ((double)(obj->clr.blue)) / 65536.0,
+./objects/QCADDesignObject.c:555:      ((double)(obj->clr.blue)) / 65536.0,
+./objects/QCADDesignObject.c:556:      ((double)(obj->clr.blue)) / 65536.0) ;
+./objects/QCADDesignObject.c:589:  {memcpy (rcWorld, &(obj->bounding_box), sizeof (WorldRectangle)) ;}
+./objects/QCADDesignObject.c:593:  gboolean bRet = (bSelected == obj->bSelected) ;
+./objects/QCADDesignObject.c:594:  obj->bSelected = bSelected ;
+./objects/QCADDesignObject.c:606:  obj->x += dxDelta ;
+./objects/QCADDesignObject.c:607:  obj->y += dyDelta ;
+./objects/QCADDesignObject.c:616:  return (((xWorld >= obj->bounding_box.xWorld) && (xWorld <= obj->bounding_box.xWorld + obj->bounding_box.cxWorld)) &&
+./objects/QCADDesignObject.c:617:          ((yWorld >= obj->bounding_box.yWorld) && (yWorld <= obj->bounding_box.yWorld + obj->bounding_box.cyWorld))) ? obj : NULL ;
+./objects/QCADDesignObject.c:625:          obj->bounding_box.xWorld,
+./objects/QCADDesignObject.c:626:          obj->bounding_box.yWorld,
+./objects/QCADDesignObject.c:627:          obj->bounding_box.cxWorld,
+./objects/QCADDesignObject.c:628:          obj->bounding_box.cyWorld,
+./objects/QCADDesignObject.c:638:          obj->bounding_box.xWorld,
+./objects/QCADDesignObject.c:639:          obj->bounding_box.yWorld,
+./objects/QCADDesignObject.c:640:          obj->bounding_box.cxWorld,
+./objects/QCADDesignObject.c:641:          obj->bounding_box.cyWorld))) ||
+./objects/QCADDesignObject.c:644:        obj->bounding_box.xWorld,
+./objects/QCADDesignObject.c:645:        obj->bounding_box.yWorld,
+./objects/QCADDesignObject.c:646:        obj->bounding_box.cxWorld,
+./objects/QCADDesignObject.c:647:        obj->bounding_box.cyWorld,
+./objects/QCADDesignObject.c:674:      obj->x = g_ascii_strtod (pszValue, NULL) ;
+./objects/QCADDesignObject.c:677:      obj->y = g_ascii_strtod (pszValue, NULL) ;
+./objects/QCADDesignObject.c:681:      obj->bounding_box.xWorld = g_ascii_strtod (pszValue, NULL) ;
+./objects/QCADDesignObject.c:684:      obj->bounding_box.yWorld = g_ascii_strtod (pszValue, NULL) ;
+./objects/QCADDesignObject.c:689:      obj->bounding_box.cxWorld = g_ascii_strtod (pszValue, NULL) - obj->bounding_box.xWorld ;
+./objects/QCADDesignObject.c:692:      obj->bounding_box.cyWorld = g_ascii_strtod (pszValue, NULL) - obj->bounding_box.yWorld ;
+./objects/QCADDesignObject.c:696:      obj->bounding_box.xWorld = g_ascii_strtod (pszValue, NULL) ;
+./objects/QCADDesignObject.c:699:      obj->bounding_box.yWorld = g_ascii_strtod (pszValue, NULL) ;
+./objects/QCADDesignObject.c:702:      obj->bounding_box.cxWorld = g_ascii_strtod (pszValue, NULL) ;
+./objects/QCADDesignObject.c:705:      obj->bounding_box.cyWorld = g_ascii_strtod (pszValue, NULL) ;
+./objects/QCADDesignObject.c:709:      obj->bSelected = (strcmp (pszValue, "FALSE") ? TRUE : FALSE) ;
+./objects/QCADDesignObject.c:712:      obj->clr.red = atoi (pszValue) ;
+./objects/QCADDesignObject.c:715:      obj->clr.green = atoi (pszValue) ;
+./objects/QCADDesignObject.c:718:      obj->clr.blue = atoi (pszValue) ;
+./objects/QCADDesignObject.c:723:  obj->clr.pixel = 0 ;
+./objects/QCADDesignObject.c:725:  gdk_colormap_alloc_color (gdk_colormap_get_system (), &(obj->clr), FALSE, TRUE) ;
+./objects/QCADDesignObject.c:736:  fprintf(fp, "x=%lf\n", obj->x);
+./objects/QCADDesignObject.c:737:  fprintf(fp, "y=%lf\n", obj->y);
+./objects/QCADDesignObject.c:738:  fprintf(fp, "bSelected=%s\n", obj->bSelected ? "TRUE" : "FALSE");
+./objects/QCADDesignObject.c:739:  fprintf(fp, "clr.red=%d\n", obj->clr.red);
+./objects/QCADDesignObject.c:740:  fprintf(fp, "clr.green=%d\n", obj->clr.green);
+./objects/QCADDesignObject.c:741:  fprintf(fp, "clr.blue=%d\n", obj->clr.blue);
+./objects/QCADDesignObject.c:742:  fprintf(fp, "bounding_box.xWorld=%lf\n", obj->bounding_box.xWorld);
+./objects/QCADDesignObject.c:743:  fprintf(fp, "bounding_box.yWorld=%lf\n", obj->bounding_box.yWorld);
+./objects/QCADDesignObject.c:744:  fprintf(fp, "bounding_box.cxWorld=%lf\n", obj->bounding_box.cxWorld);
+./objects/QCADDesignObject.c:745:  fprintf(fp, "bounding_box.cyWorld=%lf\n", obj->bounding_box.cyWorld);
+./objects/QCADLabel.c:184:  world_to_real_rect (&(obj->bounding_box), &rc) ;
+./objects/QCADLabel.c:193:    gdk_gc_set_foreground (gc, obj->bSelected ? &(QCAD_DESIGN_OBJECT_GET_CLASS (obj)->clrSelected) : &(obj->clr)) ;
+./objects/QCADLabel.c:208:      gdk_gc_set_foreground (gcEPM, obj->bSelected ? &(QCAD_DESIGN_OBJECT_GET_CLASS (obj)->clrSelected) : &(obj->clr)) ;
+./objects/QCADLabel.c:217:  if (obj->bSelected)
+./objects/QCADLabel.c:365:    r = ((double)(obj->clr.red)) / 65535.0,
+./objects/QCADLabel.c:366:    g = ((double)(obj->clr.green)) / 65535.0,
+./objects/QCADLabel.c:367:    b = ((double)(obj->clr.blue)) / 65535.0 ;
+./objects/QCADLabel.c:371:    memcpy (&clr, &(obj->clr), sizeof (GdkColor)) ;
+./objects/QCADLabel.c:375:    b = ((double)(obj->clr.blue)) / 65536.0 ; // .blue has become the luminance
+./objects/QCADLabel.c:379:    obj->bounding_box.xWorld, obj->bounding_box.yWorld, obj->bounding_box.cxWorld, obj->bounding_box.cyWorld, r, g, b, lbl->psz) ;
+./objects/QCADLayer.c:258:    if (!(obj->bSelected))
+./objects/QCADLayer.c:275:    if (!(obj->bSelected))
+./objects/QCADLayer.c:284:      (!(LAYER_TYPE_DRAWING == layer->type && obj->bounding_box.cxWorld > 10 && obj->bounding_box.cyWorld > 10)))
+./objects/QCADLayer.c:527:  if ((LAYER_DRAW_NON_SELECTION == cb_params->flags && !obj->bSelected) ||
+./objects/QCADLayer.c:528:      (LAYER_DRAW_SELECTION     == cb_params->flags &&  obj->bSelected) ||
+./objects/QCADLayer.c:724:    if (ots->parent->bSelected && obj->bSelected)
+./objects/QCADLayer.c:727:  if (obj->bSelected)
+./objects/QCADCell.c:811:      obj->bounding_box.xWorld, obj->bounding_box.yWorld, obj->bounding_box.cxWorld, obj->bounding_box.cyWorld,
+./objects/QCADCell.c:1030:  world_to_real_rect (&(obj->bounding_box), &rc) ;
+./objects/QCADCell.c:1038:  gdk_gc_set_foreground (gc, obj->bSelected ? &(QCAD_DESIGN_OBJECT_GET_CLASS (obj)->clrSelected) : &(obj->clr)) ;
+./objects/QCADCell.c:1050:      gdk_gc_set_foreground (gc, obj->bSelected ? &(QCAD_DESIGN_OBJECT_GET_CLASS (obj)->clrSelected) : &(obj->clr)) ;
+./objects/QCADCell.c:1346:  double xOld = obj->x ;
+./objects/QCADCell.c:1347:  double yOld = obj->y ;
+./objects/QCADCell.c:1359:  double dx = obj->x - xOld, dy = obj->y - yOld ;
+./objects/QCADCell.c:1708:  xOld = obj->bounding_box.xWorld ;
+./objects/QCADCell.c:1709:  yOld = obj->bounding_box.yWorld ;
+./objects/QCADCell.c:1711:  obj->bounding_box.xWorld = dScale * obj->bounding_box.xWorld - dxOrigin ;
+./objects/QCADCell.c:1712:  obj->bounding_box.yWorld = dScale * obj->bounding_box.yWorld - dyOrigin ;
+./objects/QCADCell.c:1713:  obj->bounding_box.cxWorld *= dScale ;
+./objects/QCADCell.c:1714:  obj->bounding_box.cyWorld *= dScale ;
+./objects/QCADCell.c:1728:  obj->x = obj->bounding_box.xWorld + obj->bounding_box.cxWorld / 2.0 ;
+./objects/QCADCell.c:1729:  obj->y = obj->bounding_box.yWorld + obj->bounding_box.cyWorld / 2.0 ;
+./objects/QCADCell.c:1732:    qcad_design_object_move (QCAD_DESIGN_OBJECT (cell->label), obj->bounding_box.xWorld - xOld, obj->bounding_box.yWorld - yOld) ;
+./objects/QCADCell.c~:810:      obj->bounding_box.xWorld, obj->bounding_box.yWorld, obj->bounding_box.cxWorld, obj->bounding_box.cyWorld,
+./objects/QCADCell.c~:1029:  world_to_real_rect (&(obj->bounding_box), &rc) ;
+./objects/QCADCell.c~:1037:  gdk_gc_set_foreground (gc, obj->bSelected ? &(QCAD_DESIGN_OBJECT_GET_CLASS (obj)->clrSelected) : &(obj->clr)) ;
+./objects/QCADCell.c~:1049:      gdk_gc_set_foreground (gc, obj->bSelected ? &(QCAD_DESIGN_OBJECT_GET_CLASS (obj)->clrSelected) : &(obj->clr)) ;
+./objects/QCADCell.c~:1345:  double xOld = obj->x ;
+./objects/QCADCell.c~:1346:  double yOld = obj->y ;
+./objects/QCADCell.c~:1358:  double dx = obj->x - xOld, dy = obj->y - yOld ;
+./objects/QCADCell.c~:1707:  xOld = obj->bounding_box.xWorld ;
+./objects/QCADCell.c~:1708:  yOld = obj->bounding_box.yWorld ;
+./objects/QCADCell.c~:1710:  obj->bounding_box.xWorld = dScale * obj->bounding_box.xWorld - dxOrigin ;
+./objects/QCADCell.c~:1711:  obj->bounding_box.yWorld = dScale * obj->bounding_box.yWorld - dyOrigin ;
+./objects/QCADCell.c~:1712:  obj->bounding_box.cxWorld *= dScale ;
+./objects/QCADCell.c~:1713:  obj->bounding_box.cyWorld *= dScale ;
+./objects/QCADCell.c~:1727:  obj->x = obj->bounding_box.xWorld + obj->bounding_box.cxWorld / 2.0 ;
+./objects/QCADCell.c~:1728:  obj->y = obj->bounding_box.yWorld + obj->bounding_box.cyWorld / 2.0 ;
+./objects/QCADCell.c~:1731:    qcad_design_object_move (QCAD_DESIGN_OBJECT (cell->label), obj->bounding_box.xWorld - xOld, obj->bounding_box.yWorld - yOld) ;
