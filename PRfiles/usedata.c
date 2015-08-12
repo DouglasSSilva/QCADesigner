@@ -1,4 +1,7 @@
 #include "usedata.h"
+const char* gateArray[2] = {"inverter", "majorityGate"};//vetor com todos as portas implementadas
+const char* orientationArray[4] = {"westEast", "southNorth", "eastWest", "northSouth"}; //orientação
+
 void convertFile(char* input, char* output){
   FILE* inputFile; // .txt
   FILE* useFile; // .txt
@@ -14,13 +17,10 @@ void convertFile(char* input, char* output){
   Gate = (qcaUseGate*) malloc(totalofGates*sizeof(qcaUseGate));
   printHeader(useFile, output);
   readInput(inputFile, totalofGates, Gate);
-  int i = 0;
-  for(i = 0; i < totalofGates; i++){
-    printf("%d %d %d %d \n", Gate[i].useX, Gate[i].useY, Gate[i].gateType, Gate[i].gateOrientation);
-  }
+  fclose(inputFile);
   createUseFile(useFile,totalofGates, Gate);
+  fclose(useFile);
   free(Gate);
-
 }
 
 int getTotalofGates(FILE* input){

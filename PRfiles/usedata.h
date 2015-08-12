@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const char* gateArray[2] = {"inverter", "majorityGate"};//vetor com todos as portas implementadas
-const char* orientationArray[4] = {"westEast", "southNorth", "eastWest", "northSouth"}; //orientação
+
 typedef struct qcaUseGate{
 
     int useX;
