@@ -65,7 +65,7 @@ Root: HKCR; SubKey: "QCADesigner.SimResults.File\shell\Open\command"; ValueType:
 
 [Files]
 Source: "/usr/local\*"; DestDir: "{app}"; Flags: recursesubdirs
-Source: "/home/douglas/git/QCADesigner_PlacementandRoute_with_USE/QCADesigner-2.0.3\gtk-runtime-2.6.8-rev-a.exe"; DestDir: "{tmp}"; Flags: dontcopy
+Source: "/home/douglas/workGit/QCADesigner\gtk-runtime-2.6.8-rev-a.exe"; DestDir: "{tmp}"; Flags: dontcopy
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
