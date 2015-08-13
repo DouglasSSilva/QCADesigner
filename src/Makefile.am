@@ -94,6 +94,8 @@ QCADesigner_SOURCES = \
 	sim_engine_setup_dialog.c               sim_engine_setup_dialog.h \
 	sim_fault_setup_dialog.c                sim_fault_setup_dialog.h \
 	USE_size_setup_dialog.c                 USE_size_setup_dialog.h \
+	usedata.c																usedata.h \
+	createQcaFile.c													createQcaFile.h \
 	support.c                               support.h \
 	translate_selection_dialog.c            translate_selection_dialog.h \
 	vector_table.c                          vector_table.h \
@@ -118,7 +120,7 @@ QCADesigner_LDADD = \
 	-lm \
 	@GTK_LIBS@ \
 	$(INTLLIBS) \
-	@GTHREAD_LIBS@ 
+	@GTHREAD_LIBS@
 
 #################### batch_sim ######################
 batch_sim_CFLAGS = \
@@ -219,4 +221,4 @@ graph_dialog_LDADD = \
 	-lm \
 	@GTK_LIBS@ \
 	$(INTLLIBS) \
-	@GTHREAD_LIBS@ 
+	@GTHREAD_LIBS@

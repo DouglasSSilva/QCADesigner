@@ -3,24 +3,32 @@
 const char* gateArray[2] = {"inverter", "majorityGate"};//vetor com todos as portas implementadas
 const char* orientationArray[4] = {"westEast", "southNorth", "eastWest", "northSouth"}; //orientação
 
-void convertFile(char* input){
+char* convertFile(char* input){
   FILE* inputFile; // .txt
   FILE* useFile; // .txt
   qcaUseGate* Gate;
   int totalofGates;
-  char useFileName[100], qcaFileName[100];
+  char useFileName[200], qcaFileName[200];
   inputFile = fopen(input,"r");
 
   if (input == NULL){
     printf("file not found");
     exit(1);
   }
+
   //get the name of the files we are going to create;
-  fgets(useFileName, sizeof useFileName, inputFile);
-  useFileName[strlen(useFileName) -1] = '\0';
+  strcpy(useFileName,"files/");
+  char fileName[100];
+  fgets(fileName, sizeof fileName, inputFile);
+  fileName[strlen(fileName) -1] = '\0';
+  strcat(useFileName, (const char*)fileName);
   printf("%s",useFileName);
-  fgets(qcaFileName, sizeof qcaFileName, inputFile);
-  qcaFileName[strlen(qcaFileName) -1] = '\0';
+
+  //get the qca file name
+  strcpy(qcaFileName,"files/");
+  fgets(fileName, sizeof fileName, inputFile);
+  fileName[strlen(fileName) -1] = '\0';
+  strcat(qcaFileName, (const char*)fileName);
   printf("%s",qcaFileName);
 
   useFile = fopen (useFileName,"w");
@@ -34,6 +42,7 @@ void convertFile(char* input){
   free(Gate);
 
   createQFile(useFileName, qcaFileName);
+  return qcaFileName;
 }
 
 int getTotalofGates(FILE* input){

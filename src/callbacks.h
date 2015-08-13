@@ -103,4 +103,7 @@ gboolean on_quit_menu_item_activate(GtkWidget *main_window, gpointer user_data);
 //Dayane
 int USE_clock_attribution(double x, double y, double dcx, double dcy);
 //End of Dayane
+//Douglas
+void placementAndRouting_file_operations (GtkWidget *widget, gpointer user_data);
+//End of Douglas
 #endif /* _CALLBACKS_H_*/

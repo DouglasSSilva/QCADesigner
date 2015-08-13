@@ -569,8 +569,8 @@ QCADesigner-callbacks.o: callbacks.c /usr/include/stdc-predef.h \
  objects/QCADStretchyObject.h objects/QCADDesignObject.h \
  objects/QCADSubstrate.h objects/QCADLayer.h vector_table.h \
  fault_simulation.h /usr/include/assert.h fileio.h coherence_vector.h \
- bistable_simulation.h fileio_helpers.h recent_files.h print_preview.h \
- print.h objects/QCADPrintDialog.h callback_helpers.h \
+ bistable_simulation.h usedata.h fileio_helpers.h recent_files.h \
+ print_preview.h print.h objects/QCADPrintDialog.h callback_helpers.h \
  selection_renderer.h exp_pixmap.h actions.h \
  objects/mouse_handler_struct.h objects/mouse_handlers.h \
  objects/QCADDOContainer.h objects/QCADCompoundDO.h selection_undo.h \
@@ -1900,6 +1900,8 @@ fileio.h:
 coherence_vector.h:
 
 bistable_simulation.h:
+
+usedata.h:
 
 fileio_helpers.h:
 

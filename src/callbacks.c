@@ -44,6 +44,9 @@
 #include "fault_simulation.h"
 #include "fileio.h"
 //End of Dayane Alfenas Reis - 10/13/14 03:55PM
+//Douglas Sales Silva 08/13/15
+#include "usedata.h"
+//End of Douglas Sales Silva 08/13/15
 #include "design.h"
 #ifdef STDIO_FILEIO
   #include "fileio.h"
@@ -576,7 +579,7 @@ char* get_standard_cell_name (int selected) {
   }
 }
 void use_import_standard_cell_button_clicked (GtkWidget *widget, gpointer data)
-  {   
+  {
     if (project_options.USE_size != 5) {
       GtkWidget *msg = NULL ;
       gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
@@ -594,7 +597,7 @@ void use_import_standard_cell_button_clicked (GtkWidget *widget, gpointer data)
     fileName = get_standard_cell_name(sc_selected);
     // TODO: HOW TO PRE-LOAD THIS TO MEMORY?
     sprintf(completeFileName, "%s/standard_cells/%s.qca", PACKAGE_SOURCE_DIR, fileName);
-  
+
     DESIGN *sel = NULL;
     GdkCursor *cursor = NULL ;
     push_cursor (main_window.main_window, gdk_cursor_new (GDK_WATCH)) ;
@@ -635,7 +638,7 @@ void use_resize_button_clicked (GtkWidget *widget, gpointer data)
   WorldRectangle rcWorld ;
   design_get_extents (project_options.design, &rcWorld, TRUE);
   update_design_cells (project_options.design);
-  update_cells(NULL) ; 
+  update_cells(NULL) ;
 
 }
 
@@ -1753,7 +1756,7 @@ void on_contents_menu_item_activate(GtkMenuItem * menuitem, gpointer user_data)
 
   #ifdef WIN32
   pszCmdLine = g_strdup_printf ("%s file://%s%s..%sshare%sdoc%s%s-%s%smanual%sindex.html",
-    pszBrowser, getenv ("MY_PATH"), G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S, 
+    pszBrowser, getenv ("MY_PATH"), G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S,
       G_DIR_SEPARATOR_S, PACKAGE, VERSION, G_DIR_SEPARATOR_S, G_DIR_SEPARATOR_S) ;
   #else
   pszCmdLine = g_strdup_printf ("%s %s%cdoc%cQCADesigner-%s%cmanual%cindex.html", pszBrowser,
@@ -1867,7 +1870,7 @@ static void layer_status_change (GtkWidget *widget, gpointer data)
   if (NULL == layer) return ;
 
   // Attempting to deactivate either checkbox means that we are
-  // required to drop those selected objects that lie on this layer. 
+  // required to drop those selected objects that lie on this layer.
   // If we fail to drop these objects, we must let the user know that
   // she cannot deactivate the layer.
   if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)) && NULL != layer->lstSelObjs)
@@ -2775,3 +2778,57 @@ static void real_coords_from_rulers (int *px, int *py)
   (*py) = world_to_real_y (position) ;
   }
 
+
+//Douglas Sales Silva 08/13/15
+void placementAndRouting_file_operations (GtkWidget *widget, gpointer user_data){
+  int fFileOp = (int)user_data ;
+  char *pszFName = NULL, *pszCurrent = (NULL == project_options.pszCurrentFName ? "" : project_options.pszCurrentFName) ;
+
+  if (FILEOP_OPEN == fFileOp || FILEOP_OPEN_RECENT == fFileOp || FILEOP_NEW == fFileOp || FILEOP_CLOSE == fFileOp)
+    if (!(SaveDirtyUI (GTK_WINDOW (main_window.main_window),
+      FILEOP_OPEN_RECENT == fFileOp ||
+             FILEOP_OPEN == fFileOp ? _("You have made changes to your design.  Opening another design will discard those changes. Save first ?") :
+              FILEOP_NEW == fFileOp ? _("You have made changes to your design.  Starting a new design will discard those changes.  Save first ?") :
+                                      _("You have made changes to your design.  Closing your design will discard those changes.  Save first ?"))))
+      return ;
+  pszFName = get_file_name_from_user (GTK_WINDOW (main_window.main_window), FILEOP_OPEN == fFileOp ? _("_Placement") : "????????", pszCurrent, FALSE) ;
+  if (pszFName == NULL){
+      return ;
+  }
+  char* fileName = convertFile((char*)pszFName);
+
+  DESIGN *sel = NULL;
+  GdkCursor *cursor = NULL ;
+  push_cursor (main_window.main_window, gdk_cursor_new (GDK_WATCH)) ;
+  gtk_widget_set_sensitive (main_window.vbox1, FALSE) ;
+  if (open_project_file (fileName, &sel)) {
+    QCADDesignObject *obj = NULL ;
+    EXP_ARRAY *layer_mappings = NULL ;
+
+    if (NULL == (layer_mappings = get_layer_mapping_from_user(main_window.main_window, project_options.design, sel)))
+      sel = design_destroy (sel);
+    else
+      {
+      design_selection_release (project_options.design, main_window.drawing_area->window, GDK_COPY) ;
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (main_window.default_action_button), TRUE) ;
+
+      if (NULL != (obj = merge_selection (project_options.design, sel, layer_mappings)))
+        move_selection_to_pointer (obj) ;
+      sel = design_destroy (sel) ;
+      exp_array_free (layer_mappings) ;
+      }
+    }
+  else {
+    GtkWidget *msg = NULL ;
+    gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+      "Failed to import cell from file \"%s\"!", fileName))) ;
+    gtk_widget_hide (msg) ;
+    gtk_widget_destroy (msg) ;
+    }
+  gtk_widget_set_sensitive (main_window.vbox1, TRUE) ;
+  if (NULL != (cursor = pop_cursor (main_window.main_window)))
+    gdk_cursor_unref (cursor) ;
+  return ;
+
+}
+//end of Douglas Sales Silva 08/13/15

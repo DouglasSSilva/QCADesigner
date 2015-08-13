@@ -27,7 +27,7 @@ void getUseData(FILE* useFile, FILE* qcaFile){
   char line [100];
   char fileName[100];
   while (!feof(useFile)){
-    fgets(line, sizeof line, useFile);  
+    fgets(line, sizeof line, useFile);
     if(strcmp(line,"end") == 0){
       break;
     }
@@ -100,6 +100,9 @@ void changeQCADesignObject(int dx, int dy, FILE* tempQCAFile, FILE* qcaFile){
         break;
       }
       else if (strcmp(line, finishedAreas[4]) == 0){
+        fprintf(qcaFile, "%s\n", line);
+      }
+      else{
         fprintf(qcaFile, "%s\n", line);
       }
   }

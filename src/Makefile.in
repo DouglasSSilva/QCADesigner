@@ -149,6 +149,8 @@ am_QCADesigner_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	QCADesigner-sim_engine_setup_dialog.$(OBJEXT) \
 	QCADesigner-sim_fault_setup_dialog.$(OBJEXT) \
 	QCADesigner-USE_size_setup_dialog.$(OBJEXT) \
+	QCADesigner-usedata.$(OBJEXT) \
+	QCADesigner-createQcaFile.$(OBJEXT) \
 	QCADesigner-support.$(OBJEXT) \
 	QCADesigner-translate_selection_dialog.$(OBJEXT) \
 	QCADesigner-vector_table.$(OBJEXT) \
@@ -517,6 +519,8 @@ QCADesigner_SOURCES = \
 	sim_engine_setup_dialog.c               sim_engine_setup_dialog.h \
 	sim_fault_setup_dialog.c                sim_fault_setup_dialog.h \
 	USE_size_setup_dialog.c                 USE_size_setup_dialog.h \
+	usedata.c																usedata.h \
+	createQcaFile.c													createQcaFile.h \
 	support.c                               support.h \
 	translate_selection_dialog.c            translate_selection_dialog.h \
 	vector_table.c                          vector_table.h \
@@ -541,7 +545,7 @@ QCADesigner_LDADD = \
 	-lm \
 	@GTK_LIBS@ \
 	$(INTLLIBS) \
-	@GTHREAD_LIBS@ 
+	@GTHREAD_LIBS@
 
 
 #################### batch_sim ######################
@@ -644,7 +648,7 @@ graph_dialog_LDADD = \
 	-lm \
 	@GTK_LIBS@ \
 	$(INTLLIBS) \
-	@GTHREAD_LIBS@ 
+	@GTHREAD_LIBS@
 
 all: all-am
 
@@ -851,6 +855,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-callbacks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-coherence_vector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-coherence_vector_properties_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-createQcaFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-custom_widgets.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-design.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-exp_array.Po@am__quote@
@@ -890,6 +895,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-simulation_data.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-support.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-translate_selection_dialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-usedata.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-vector_table.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-vector_table_options_dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/QCADesigner-vector_table_options_dialog_callbacks.Po@am__quote@
@@ -1820,6 +1826,34 @@ QCADesigner-USE_size_setup_dialog.obj: USE_size_setup_dialog.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='USE_size_setup_dialog.c' object='QCADesigner-USE_size_setup_dialog.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(QCADesigner_CFLAGS) $(CFLAGS) -c -o QCADesigner-USE_size_setup_dialog.obj `if test -f 'USE_size_setup_dialog.c'; then $(CYGPATH_W) 'USE_size_setup_dialog.c'; else $(CYGPATH_W) '$(srcdir)/USE_size_setup_dialog.c'; fi`
+
+QCADesigner-usedata.o: usedata.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(QCADesigner_CFLAGS) $(CFLAGS) -MT QCADesigner-usedata.o -MD -MP -MF $(DEPDIR)/QCADesigner-usedata.Tpo -c -o QCADesigner-usedata.o `test -f 'usedata.c' || echo '$(srcdir)/'`usedata.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/QCADesigner-usedata.Tpo $(DEPDIR)/QCADesigner-usedata.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='usedata.c' object='QCADesigner-usedata.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(QCADesigner_CFLAGS) $(CFLAGS) -c -o QCADesigner-usedata.o `test -f 'usedata.c' || echo '$(srcdir)/'`usedata.c
+
+QCADesigner-usedata.obj: usedata.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(QCADesigner_CFLAGS) $(CFLAGS) -MT QCADesigner-usedata.obj -MD -MP -MF $(DEPDIR)/QCADesigner-usedata.Tpo -c -o QCADesigner-usedata.obj `if test -f 'usedata.c'; then $(CYGPATH_W) 'usedata.c'; else $(CYGPATH_W) '$(srcdir)/usedata.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/QCADesigner-usedata.Tpo $(DEPDIR)/QCADesigner-usedata.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='usedata.c' object='QCADesigner-usedata.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(QCADesigner_CFLAGS) $(CFLAGS) -c -o QCADesigner-usedata.obj `if test -f 'usedata.c'; then $(CYGPATH_W) 'usedata.c'; else $(CYGPATH_W) '$(srcdir)/usedata.c'; fi`
+
+QCADesigner-createQcaFile.o: createQcaFile.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(QCADesigner_CFLAGS) $(CFLAGS) -MT QCADesigner-createQcaFile.o -MD -MP -MF $(DEPDIR)/QCADesigner-createQcaFile.Tpo -c -o QCADesigner-createQcaFile.o `test -f 'createQcaFile.c' || echo '$(srcdir)/'`createQcaFile.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/QCADesigner-createQcaFile.Tpo $(DEPDIR)/QCADesigner-createQcaFile.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='createQcaFile.c' object='QCADesigner-createQcaFile.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(QCADesigner_CFLAGS) $(CFLAGS) -c -o QCADesigner-createQcaFile.o `test -f 'createQcaFile.c' || echo '$(srcdir)/'`createQcaFile.c
+
+QCADesigner-createQcaFile.obj: createQcaFile.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(QCADesigner_CFLAGS) $(CFLAGS) -MT QCADesigner-createQcaFile.obj -MD -MP -MF $(DEPDIR)/QCADesigner-createQcaFile.Tpo -c -o QCADesigner-createQcaFile.obj `if test -f 'createQcaFile.c'; then $(CYGPATH_W) 'createQcaFile.c'; else $(CYGPATH_W) '$(srcdir)/createQcaFile.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/QCADesigner-createQcaFile.Tpo $(DEPDIR)/QCADesigner-createQcaFile.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='createQcaFile.c' object='QCADesigner-createQcaFile.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(QCADesigner_CFLAGS) $(CFLAGS) -c -o QCADesigner-createQcaFile.obj `if test -f 'createQcaFile.c'; then $(CYGPATH_W) 'createQcaFile.c'; else $(CYGPATH_W) '$(srcdir)/createQcaFile.c'; fi`
 
 QCADesigner-support.o: support.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(QCADesigner_CFLAGS) $(CFLAGS) -MT QCADesigner-support.o -MD -MP -MF $(DEPDIR)/QCADesigner-support.Tpo -c -o QCADesigner-support.o `test -f 'support.c' || echo '$(srcdir)/'`support.c
