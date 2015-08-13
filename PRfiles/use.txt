@@ -1,63 +1,76 @@
 -------------------------------USEFile use.txt----------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
-Gate: inverter
-Gate Orientation: southNorth
-useX: 0
-useY: 0
-FileName: inverter_southNorth.qca
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 1 
+useY: 1 
+FileName: inverter_northSouth.qca 
 -----------------------------------------------------------------------
-Gate: inverter
-Gate Orientation: northSouth
-useX: 1
-useY: 3
-FileName: inverter_northSouth.qca
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 1 
+useY: 3 
+FileName: inverter_northSouth.qca 
 -----------------------------------------------------------------------
-Gate: inverter
-Gate Orientation: eastWest
-useX: 1
-useY: 2
-FileName: inverter_eastWest.qca
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 1 
+useY: 2 
+FileName: inverter_eastWest.qca 
 -----------------------------------------------------------------------
-Gate: majorityGate
-Gate Orientation: eastWest
-useX: 1
-useY: 4
-FileName: majorityGate_eastWest.qca
+Gate: majorityGate 
+Gate Orientation: eastWest 
+useX: 1 
+useY: 4 
+FileName: majorityGate_eastWest.qca 
 -----------------------------------------------------------------------
-Gate: majorityGate
-Gate Orientation: northSouth
-useX: 3
-useY: 5
-FileName: majorityGate_northSouth.qca
+Gate: majorityGate 
+Gate Orientation: northSouth 
+useX: 3 
+useY: 5 
+FileName: majorityGate_northSouth.qca 
 -----------------------------------------------------------------------
-Gate: inverter
-Gate Orientation: eastWest
-useX: 3
-useY: 2
-FileName: inverter_eastWest.qca
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 3 
+useY: 2 
+FileName: inverter_eastWest.qca 
 -----------------------------------------------------------------------
-Gate: majorityGate
-Gate Orientation: westEast
-useX: 4
-useY: 3
-FileName: majorityGate_westEast.qca
+Gate: majorityGate 
+Gate Orientation: westEast 
+useX: 4 
+useY: 3 
+FileName: majorityGate_westEast.qca 
 -----------------------------------------------------------------------
-Gate: inverter
-Gate Orientation: southNorth
-useX: 5
-useY: 4
-FileName: inverter_southNorth.qca
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 5 
+useY: 4 
+FileName: inverter_southNorth.qca 
 -----------------------------------------------------------------------
-Gate: majorityGate
-Gate Orientation: northSouth
-useX: 6
-useY: 3
-FileName: majorityGate_northSouth.qca
+Gate: majorityGate 
+Gate Orientation: northSouth 
+useX: 6 
+useY: 3 
+FileName: majorityGate_northSouth.qca 
 -----------------------------------------------------------------------
-Gate: inverter
-Gate Orientation: westEast
-useX: 4
-useY: 4
-FileName: inverter_westEast.qca
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 4 
+useY: 4 
+FileName: inverter_westEast.qca 
 -----------------------------------------------------------------------
+Gate: majorityGate 
+Gate Orientation: westEast 
+useX: 10 
+useY: 10 
+FileName: majorityGate_westEast.qca 
+-----------------------------------------------------------------------
+Gate: majorityGate 
+Gate Orientation: eastWest 
+useX: 3 
+useY: 8 
+FileName: majorityGate_eastWest.qca 
+-----------------------------------------------------------------------
+end

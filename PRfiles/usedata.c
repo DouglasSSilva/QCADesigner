@@ -48,6 +48,7 @@ void createUseFile(FILE* output, int totalofGates, qcaUseGate* Gate){
     fprintf(output, "FileName: %s_%s.qca \n",gateArray[Gate[i].gateType],orientationArray[orientation]);
     fprintf(output, "-----------------------------------------------------------------------\n");
   }
+  fprintf(output,"end");
 }
 
 int getFileOrientation(int orientation, int useX, int useY){
