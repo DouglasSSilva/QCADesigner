@@ -71,6 +71,9 @@ void create_main_window (main_W *main_window){
     *fault_simulation_stop_menu_item  = NULL,
     *USE_clocking_scheme_setup_menu_item=NULL,
     ////////////// End of Dayane Alfenas Reis - 09/10/14 - 09:48am
+    ////////////// Douglas Sales Silva - 12/08/15
+    *PR_setup_menu_item=NULL,
+    ////////////// End of Douglas Sales Silva - 12/08/15
 #ifdef STDIO_FILEIO
     *open_menu_item                  = NULL, *save_menu_item            = NULL, *save_as_menu_item                 = NULL,
     *recent_files_menu_item          = NULL, *import_block_menu_item    = NULL, *create_block_menu_item            = NULL,
@@ -335,6 +338,17 @@ void create_main_window (main_W *main_window){
   gtk_widget_show (mnuiSep);
   gtk_container_add (GTK_CONTAINER (file_menu_menu), mnuiSep);
   gtk_widget_set_sensitive (mnuiSep, FALSE);
+
+  ////////////// Douglas Sales Silva - 12/08/15 - 01:01pm
+
+
+  // create and add the Placement and routing menu item menu //
+  PR_setup_menu_item = gtk_menu_item_new_with_mnemonic (_("_PlacementRouting"));
+  gtk_widget_show (PR_setup_menu_item);
+  gtk_container_add (GTK_CONTAINER (file_menu_menu), PR_setup_menu_item);
+  gtk_tooltips_set_tip (tooltips, PR_setup_menu_item, _("use an input to place a file inside qcaDesigner"), NULL);
+
+  ////////////// end Douglas Sales Silva - 12/08/15 - 01:01pm
 
   // create and add the quit menu item to the file menu //
   quit_menu_item = gtk_image_menu_item_new_from_stock (GTK_STOCK_QUIT, accel_group);
@@ -681,6 +695,7 @@ void create_main_window (main_W *main_window){
   gtk_container_add (GTK_CONTAINER (simulation_menu_menu), fault_simulation_setup_menu_item);
 
   ///////////// end of Dayane Alfenas Reis - 29/09/14 - 01:01pm
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////// HELP MENU ////////////////////////////////////////////////
