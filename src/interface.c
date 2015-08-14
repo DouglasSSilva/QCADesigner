@@ -286,6 +286,17 @@ void create_main_window (main_W *main_window){
   gtk_widget_show (save_as_menu_item);
   gtk_container_add (GTK_CONTAINER (file_menu_menu), save_as_menu_item);
   gtk_tooltips_set_tip (tooltips, save_as_menu_item, _("Save project file as ..."), NULL);
+
+  ////////////// Douglas Sales Silva - 12/08/15 - 01:01pm
+
+
+  PR_setup_menu_item =  gtk_menu_item_new_with_mnemonic (_("_Placement")) ;
+  gtk_widget_show (PR_setup_menu_item);
+  gtk_container_add (GTK_CONTAINER (file_menu_menu), PR_setup_menu_item);
+  gtk_tooltips_set_tip (tooltips, PR_setup_menu_item, _("qcafile Placement"), NULL);
+
+
+  ////////////// end Douglas Sales Silva - 12/08/15 - 01:01pm
 #endif /* def STDIO_FILEIO */
 
   // create and add a seperator to the file menu //
@@ -333,16 +344,7 @@ void create_main_window (main_W *main_window){
   gtk_widget_show (main_window->recent_files_menu) ;
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (recent_files_menu_item), main_window->recent_files_menu) ;
 #endif /* def STDIO_FILEIO */
-  ////////////// Douglas Sales Silva - 12/08/15 - 01:01pm
 
-
-  PR_setup_menu_item =  gtk_menu_item_new_with_mnemonic (_("_Placement")) ;
-  gtk_widget_show (save_as_menu_item);
-  gtk_container_add (GTK_CONTAINER (file_menu_menu), PR_setup_menu_item);
-  gtk_tooltips_set_tip (tooltips, PR_setup_menu_item, _("qcafile Placement"), NULL);
-
-
-  ////////////// end Douglas Sales Silva - 12/08/15 - 01:01pm
   // create and add a seperator to the file menu //
   mnuiSep = gtk_menu_item_new ();
   gtk_widget_show (mnuiSep);
@@ -1035,7 +1037,7 @@ void create_main_window (main_W *main_window){
 #ifdef STDIO_FILEIO
 ////////////// Douglas Sales Silva - 08/13/14 - 11:10am
   g_signal_connect (G_OBJECT (PR_setup_menu_item),                             "activate", (GCallback)placementAndRouting_file_operations, (gpointer)FILEOP_OPEN);
-////////////// Douglas Sales Silva - 08/13/14 - 11:10am  
+////////////// Douglas Sales Silva - 08/13/14 - 11:10am
   g_signal_connect (G_OBJECT (open_menu_item),                                 "activate", (GCallback)file_operations, (gpointer)FILEOP_OPEN);
   g_signal_connect (G_OBJECT (save_menu_item),                                 "activate", (GCallback)file_operations, (gpointer)FILEOP_SAVE);
   g_signal_connect (G_OBJECT (save_as_menu_item),                              "activate", (GCallback)file_operations, (gpointer)FILEOP_SAVE_AS);

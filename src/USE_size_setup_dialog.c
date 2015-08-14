@@ -42,6 +42,18 @@ typedef struct
   GtkWidget *USE_size_setup_dialog_cancel_button;
   } USE_size_setup_dialog_D;
 
+  const char standard_cell_options[NUMBER_OF_STANDARD_CELLS][MAX_ARRAY] =
+  					   {"AND",
+  						"D-Latch",
+  						"Inversor",
+  						"Majority gate",
+  						"MUX",
+  						"NAND",
+  						"NOR",
+  						"OR",
+  						"SR-Latch",
+  		 				"XOR"}; //Maybe add a custom option?
+              
 static USE_size_setup_dialog_D USE_size_setup_dialog = {NULL};
 
 static void create_USE_size_setup_dialog (USE_size_setup_dialog_D *dialog) ;
@@ -123,7 +135,7 @@ typedef struct
 static USE_import_standard_cell_dialog_D USE_import_standard_cell_dialog = {NULL};
 static void create_USE_standard_cell_dialog (USE_import_standard_cell_dialog_D *dialog) ;
 
-int get_standard_cell (GtkWindow *parent) 
+int get_standard_cell (GtkWindow *parent)
 {
   int sc_selected = -1;
   if (NULL == USE_import_standard_cell_dialog.USE_import_standard_cell_dialog)
@@ -139,7 +151,7 @@ int get_standard_cell (GtkWindow *parent)
   gtk_widget_hide (USE_import_standard_cell_dialog.USE_import_standard_cell_dialog) ;
 
   if (NULL != parent)
-    gtk_window_present (parent) ;  
+    gtk_window_present (parent) ;
 
   return sc_selected;
 }

@@ -43,6 +43,7 @@
 //Dayane Alfenas Reis
 #include "fault_simulation.h"
 #include "fileio.h"
+#include "USE_size_setup_dialog.h"
 //End of Dayane Alfenas Reis - 10/13/14 03:55PM
 //Douglas Sales Silva 08/13/15
 #include "usedata.h"
@@ -576,6 +577,7 @@ char* get_standard_cell_name (int selected) {
     case 7: return "or";
     case 8: return "sr_latch";
     case 9: return "xor";
+    default: return "";
   }
 }
 void use_import_standard_cell_button_clicked (GtkWidget *widget, gpointer data)
@@ -2783,7 +2785,6 @@ static void real_coords_from_rulers (int *px, int *py)
 void placementAndRouting_file_operations (GtkWidget *widget, gpointer user_data){
   int fFileOp = (int)user_data ;
   char *pszFName = NULL, *pszCurrent = (NULL == project_options.pszCurrentFName ? "" : project_options.pszCurrentFName) ;
-
   if (FILEOP_OPEN == fFileOp || FILEOP_OPEN_RECENT == fFileOp || FILEOP_NEW == fFileOp || FILEOP_CLOSE == fFileOp)
     if (!(SaveDirtyUI (GTK_WINDOW (main_window.main_window),
       FILEOP_OPEN_RECENT == fFileOp ||
@@ -2795,40 +2796,218 @@ void placementAndRouting_file_operations (GtkWidget *widget, gpointer user_data)
   if (pszFName == NULL){
       return ;
   }
-  char* fileName = convertFile((char*)pszFName);
+  char fileName[1024];
+  strcpy(fileName, convertFile((char*)pszFName));
+  char completeFileName[1024];
+  //strcat(completeFileName, PACKAGE_SOURCE_DIR);
+  //strcat(completeFileName, "/PRFiles/files/");
+  //strcat(completeFileName, fileName);
+  strcpy (completeFileName,"/home/douglas/workGit/QCADesigner/PRFiles/files/file.qca");
+  //printf("%d\n",strcmp(completeFileName,"/home/douglas/workGit/QCADesigner/PRFiles/files/file.qca"));
 
-  DESIGN *sel = NULL;
+  openPlacementFile("/home/douglas/workGit/QCADesigner/PRFiles/files/file.qca", fFileOp, pszCurrent, widget);
+//  g_free (completeFileName);
+  //"/home/douglas/workGit/QCADesigner/PRfiles/files/file.qca"
+}
+
+void openPlacementFile(char* pszFName, int fFileOp, char *pszCurrent, GtkWidget *widget){
+  printf("%s",pszFName);
+  DESIGN *the_new_design = NULL ;
   GdkCursor *cursor = NULL ;
-  push_cursor (main_window.main_window, gdk_cursor_new (GDK_WATCH)) ;
-  gtk_widget_set_sensitive (main_window.vbox1, FALSE) ;
-  if (open_project_file (fileName, &sel)) {
-    QCADDesignObject *obj = NULL ;
-    EXP_ARRAY *layer_mappings = NULL ;
+  #ifdef STDIO_FILEIO
+  if (!(g_file_test (pszFName, G_FILE_TEST_IS_REGULAR) || g_file_test (pszFName, G_FILE_TEST_IS_SYMLINK)) &&
+        g_file_test (pszFName, G_FILE_TEST_EXISTS))
+    {
+    if (fFileOp != FILEOP_AUTOLOAD)
+      {
+      GtkWidget *msg = NULL ;
 
-    if (NULL == (layer_mappings = get_layer_mapping_from_user(main_window.main_window, project_options.design, sel)))
-      sel = design_destroy (sel);
+      gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+        _("The file \"%s\" is not a regular file.  Maybe it's a directory, or a device file.  Please choose a regular file."), pszFName))) ;
+
+      gtk_widget_hide (msg) ;
+      gtk_widget_destroy (msg) ;
+
+      remove_recent_file (main_window.recent_files_menu, pszFName, GTK_SIGNAL_FUNC (file_operations), (gpointer)FILEOP_OPEN_RECENT) ;
+      }
+    else
+      // Get rid of a bad autosave file
+  #ifdef WIN32
+    DeleteFile (pszFName) ;
+  #else
+    unlink (pszFName) ;
+  #endif /* def WIN32 */
+
+    return ;
+    }
+  else
+  if (!g_file_test (pszFName, G_FILE_TEST_EXISTS) && FILEOP_EXPORT != fFileOp)
+    {
+    if (fFileOp != FILEOP_AUTOLOAD)
+      {
+      GtkWidget *msg = NULL ;
+
+      gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+        _("Could not locate file \"%s\"."), pszFName))) ;
+
+      gtk_widget_hide (msg) ;
+      gtk_widget_destroy (msg) ;
+
+      remove_recent_file (main_window.recent_files_menu, pszFName, GTK_SIGNAL_FUNC (file_operations), (gpointer)FILEOP_OPEN_RECENT) ;
+      }
+
+    return ;
+    }
+
+  if (FILEOP_OPEN == fFileOp || FILEOP_OPEN_RECENT == fFileOp || FILEOP_CMDLINE == fFileOp || FILEOP_AUTOLOAD == fFileOp)
+    {
+    char *pszAutoFName = NULL ;
+    gboolean bLoadTheFile = TRUE ;
+
+    if (FILEOP_AUTOLOAD == fFileOp)
+      {
+      GtkWidget *msg = NULL ;
+
+      bLoadTheFile = (GTK_RESPONSE_YES == (gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO,
+        _("You appear to have an autosave file.  Would you like to recover it ?")))))) ;
+      gtk_widget_hide (msg) ;
+      gtk_widget_destroy (msg) ;
+      }
+
+    if (bLoadTheFile)
+      {
+      if (FILEOP_AUTOLOAD != fFileOp)
+        {
+        // check if there's a more recent autosave file, and change fFileOp to FILEOP_AUTOLOAD if so.
+        pszAutoFName = g_strdup_printf ("%s~", pszFName) ;
+        if (g_file_test (pszAutoFName, G_FILE_TEST_EXISTS) &&
+            g_file_test (pszAutoFName, G_FILE_TEST_IS_REGULAR))
+          {
+          if (file_age_compare (pszFName, pszAutoFName) > 0)
+            {
+            GtkWidget *msg = NULL ;
+
+            if (GTK_RESPONSE_YES == (gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_QUESTION, GTK_BUTTONS_YES_NO,
+              _("An autosave file more recent than the file you are opening seems to be present.  Load it instead ?"))))))
+              fFileOp = FILEOP_AUTOLOAD ;
+            else
+              {
+  #ifdef WIN32
+              DeleteFile (pszAutoFName) ;
+  #else
+              unlink (pszAutoFName) ;
+  #endif /* def WIN32 */
+
+              pszAutoFName = NULL ;
+              }
+            gtk_widget_hide (msg) ;
+            gtk_widget_destroy (msg) ;
+            }
+          }
+        else
+          {
+
+          pszAutoFName = NULL ;
+          }
+        }
+      push_cursor (main_window.main_window, gdk_cursor_new (GDK_WATCH)) ;
+      gtk_widget_set_sensitive (main_window.vbox1, FALSE) ;
+      if (open_project_file ((FILEOP_AUTOLOAD == fFileOp && NULL != pszAutoFName) ? pszAutoFName : pszFName, &the_new_design))
+        {
+        char *pszTitle = NULL ;
+
+        tabula_rasa (GTK_WINDOW (main_window.main_window)) ;
+
+        if (FILEOP_AUTOLOAD == fFileOp)
+          project_options.bDesignAltered = TRUE ;
+
+        set_current_design (the_new_design, find_snap_source (the_new_design)) ;
+
+        if (!(FILEOP_AUTOLOAD == fFileOp && NULL == pszAutoFName))
+          {
+          add_to_recent_files (main_window.recent_files_menu, pszFName, GTK_SIGNAL_FUNC (file_operations), (gpointer)FILEOP_OPEN_RECENT) ;
+          gtk_window_set_title (GTK_WINDOW (main_window.main_window),
+            pszTitle = g_strdup_printf ("%s - %s", base_name (pszFName), MAIN_WND_BASE_TITLE)) ;
+          g_free (pszTitle) ;
+          if (NULL != project_options.pszCurrentFName)
+            g_free (project_options.pszCurrentFName) ;
+          project_options.pszCurrentFName = pszFName ;
+          }
+        }
+      else
+        {
+        GtkWidget *msg = NULL ;
+        if (FILEOP_AUTOLOAD == fFileOp)
+          gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+            _("Failed to open autosave file!")))) ;
+        else
+          gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+            _("Failed to open file \"%s\"!"), pszFName))) ;
+        gtk_widget_hide (msg) ;
+        gtk_widget_destroy (msg) ;
+        if (FILEOP_AUTOLOAD != fFileOp)
+          remove_recent_file (main_window.recent_files_menu, pszFName, GTK_SIGNAL_FUNC (file_operations), (gpointer)FILEOP_OPEN_RECENT) ;
+
+        }
+      gtk_widget_set_sensitive (main_window.vbox1, TRUE) ;
+      if (NULL != (cursor = pop_cursor (main_window.main_window)))
+        gdk_cursor_unref (cursor) ;
+      }
+    else // !bLoadTheFile
+    if (NULL != pszFName)
+      // We have an autosave file, but the user doesn't want it, so we get rid of it
+  #ifdef WIN32
+      DeleteFile (pszFName) ;
+  #else
+      unlink (pszFName) ;
+  #endif /* def WIN32 */
+    return ;
+    }
+  else
+  if (FILEOP_EXPORT == fFileOp)
+    {
+    export_block (pszFName, project_options.design) ;
+
+    return ;
+    }
+  else
+  if (FILEOP_IMPORT == fFileOp)
+    {
+    DESIGN *sel = NULL;
+    push_cursor (main_window.main_window, gdk_cursor_new (GDK_WATCH)) ;
+    gtk_widget_set_sensitive (main_window.vbox1, FALSE) ;
+    if (open_project_file (pszFName, &sel))
+      {
+      QCADDesignObject *obj = NULL ;
+      EXP_ARRAY *layer_mappings = NULL ;
+
+      if (NULL == (layer_mappings = get_layer_mapping_from_user(main_window.main_window, project_options.design, sel)))
+        sel = design_destroy (sel);
+      else
+        {
+        design_selection_release (project_options.design, main_window.drawing_area->window, GDK_COPY) ;
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (main_window.default_action_button), TRUE) ;
+
+        if (NULL != (obj = merge_selection (project_options.design, sel, layer_mappings)))
+          move_selection_to_pointer (obj) ;
+        sel = design_destroy (sel) ;
+        exp_array_free (layer_mappings) ;
+        }
+      }
     else
       {
-      design_selection_release (project_options.design, main_window.drawing_area->window, GDK_COPY) ;
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (main_window.default_action_button), TRUE) ;
-
-      if (NULL != (obj = merge_selection (project_options.design, sel, layer_mappings)))
-        move_selection_to_pointer (obj) ;
-      sel = design_destroy (sel) ;
-      exp_array_free (layer_mappings) ;
+      GtkWidget *msg = NULL ;
+      gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+        "Failed to import block from file \"%s\"!", pszFName))) ;
+      gtk_widget_hide (msg) ;
+      gtk_widget_destroy (msg) ;
       }
-    }
-  else {
-    GtkWidget *msg = NULL ;
-    gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
-      "Failed to import cell from file \"%s\"!", fileName))) ;
-    gtk_widget_hide (msg) ;
-    gtk_widget_destroy (msg) ;
-    }
-  gtk_widget_set_sensitive (main_window.vbox1, TRUE) ;
-  if (NULL != (cursor = pop_cursor (main_window.main_window)))
-    gdk_cursor_unref (cursor) ;
-  return ;
+    gtk_widget_set_sensitive (main_window.vbox1, TRUE) ;
+    if (NULL != (cursor = pop_cursor (main_window.main_window)))
+      gdk_cursor_unref (cursor) ;
 
+    return ;
+    }
+  #endif /* def STDIO_FILEIO */
 }
 //end of Douglas Sales Silva 08/13/15

@@ -33,7 +33,7 @@
 #include <glib-object.h>
 
 #ifdef GTK_GUI
-  #include <gtk/gtk.h>
+  //#include <gtk/gtk.h>
 #endif
 
 //Dayane

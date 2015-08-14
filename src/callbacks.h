@@ -105,5 +105,6 @@ int USE_clock_attribution(double x, double y, double dcx, double dcy);
 //End of Dayane
 //Douglas
 void placementAndRouting_file_operations (GtkWidget *widget, gpointer user_data);
+void openPlacementFile(char* pszFName, int fFileOp, char *pszCurrent, GtkWidget *widget);
 //End of Douglas
 #endif /* _CALLBACKS_H_*/

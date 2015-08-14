@@ -12,11 +12,14 @@ void createQFile(char* input, char* output){
   FILE* qcaFile = fopen(output, "w");
   char line[100];
 
+  if(input == NULL){
+    printf ("Error, the file path is wrong");
+    exit(1);
+  }
   int i;
   for (i = 0; i< 3; i++){
     fgets(line, sizeof line, useFile);
   }
-
   getUseData(useFile, qcaFile);
   fclose(useFile);
   fclose (qcaFile);
@@ -25,7 +28,7 @@ void createQFile(char* input, char* output){
 void getUseData(FILE* useFile, FILE* qcaFile){
   int useX, useY;
   char line [100];
-  char fileName[100];
+  char fileName[1024];
   while (!feof(useFile)){
     fgets(line, sizeof line, useFile);
     if(strcmp(line,"end") == 0){
@@ -50,8 +53,8 @@ void readQCAFileBuildNewOne(int useX, int useY, char* fileName,FILE* qcaFile){
   int dy = useY * gridSize;
 
   // finding the file path;
-  char path[100];
-  strcpy(path,"gates/");
+  char path[1024];
+  strcpy(path,"./PRfiles/gates/");
   strcat(path, (const char*)fileName);
   FILE* tempQCAFile = fopen(path, "r");
   if(tempQCAFile == NULL){

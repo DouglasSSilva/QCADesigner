@@ -35,18 +35,7 @@ int get_USE_size_from_user (GtkWindow *parent, int USE_size);
 //Thamara
 #define MAX_ARRAY 20
 #define NUMBER_OF_STANDARD_CELLS 10
-const char 
-standard_cell_options[NUMBER_OF_STANDARD_CELLS][MAX_ARRAY] = 
-					   {"AND",
-						"D-Latch",
-						"Inversor",
-						"Majority gate",
-						"MUX",
-						"NAND",
-						"NOR",
-						"OR",
-						"SR-Latch",
-		 				"XOR"}; //Maybe add a custom option?
+
 
 int get_standard_cell (GtkWindow *parent);
 void add_SD_options_to_combo_box (GtkWidget *combo);

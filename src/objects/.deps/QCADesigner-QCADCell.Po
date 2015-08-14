@@ -137,7 +137,7 @@ objects/QCADesigner-QCADCell.o: objects/QCADCell.c \
  /usr/include/glib-2.0/gobject/gtypemodule.h \
  /usr/include/glib-2.0/gobject/gtypeplugin.h \
  /usr/include/glib-2.0/gobject/gvaluearray.h \
- /usr/include/glib-2.0/gobject/gvaluetypes.h \
+ /usr/include/glib-2.0/gobject/gvaluetypes.h objects/../callbacks.h \
  /usr/include/gtk-2.0/gtk/gtk.h /usr/include/gtk-2.0/gdk/gdk.h \
  /usr/include/gtk-2.0/gdk/gdkapplaunchcontext.h \
  /usr/include/glib-2.0/gio/gio.h /usr/include/glib-2.0/gio/giotypes.h \
@@ -558,15 +558,14 @@ objects/QCADesigner-QCADCell.o: objects/QCADCell.c \
  /usr/include/gtk-2.0/gtk/gtkoldeditable.h \
  /usr/include/gtk-2.0/gtk/gtkoptionmenu.h \
  /usr/include/gtk-2.0/gtk/gtkpreview.h \
- /usr/include/gtk-2.0/gtk/gtktipsquery.h objects/../callbacks.h \
- objects/../generic_utils.h objects/../support.h /usr/include/libintl.h \
- /usr/include/locale.h /usr/include/x86_64-linux-gnu/bits/locale.h \
- objects/../global_consts.h objects/../custom_widgets.h \
- objects/../fileio_helpers.h objects/QCADCell.h objects/../gdk_structs.h \
- objects/../exp_array.h objects/QCADDesignObject.h \
- objects/mouse_handler_struct.h objects/object_helpers.h \
- objects/../hsl2rgb.h objects/QCADUndoEntry.h objects/QCADLabel.h \
- objects/../exp_pixmap.h objects/QCADStretchyObject.h \
+ /usr/include/gtk-2.0/gtk/gtktipsquery.h objects/../generic_utils.h \
+ objects/../support.h /usr/include/libintl.h /usr/include/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h objects/../global_consts.h \
+ objects/../custom_widgets.h objects/../fileio_helpers.h \
+ objects/QCADCell.h objects/../gdk_structs.h objects/../exp_array.h \
+ objects/QCADDesignObject.h objects/mouse_handler_struct.h \
+ objects/object_helpers.h objects/../hsl2rgb.h objects/QCADUndoEntry.h \
+ objects/QCADLabel.h objects/../exp_pixmap.h objects/QCADStretchyObject.h \
  objects/QCADDOContainer.h objects/QCADClockCombo.h \
  objects/mouse_handlers.h objects/QCADCompoundDO.h \
  objects/objects_debug.h
@@ -906,6 +905,8 @@ objects/QCADesigner-QCADCell.o: objects/QCADCell.c \
 /usr/include/glib-2.0/gobject/gvaluearray.h:
 
 /usr/include/glib-2.0/gobject/gvaluetypes.h:
+
+objects/../callbacks.h:
 
 /usr/include/gtk-2.0/gtk/gtk.h:
 
@@ -1824,8 +1825,6 @@ objects/QCADesigner-QCADCell.o: objects/QCADCell.c \
 /usr/include/gtk-2.0/gtk/gtkpreview.h:
 
 /usr/include/gtk-2.0/gtk/gtktipsquery.h:
-
-objects/../callbacks.h:
 
 objects/../generic_utils.h:
 

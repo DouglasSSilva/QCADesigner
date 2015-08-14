@@ -5,34 +5,40 @@ const char* gateArray[2] = {"inverter", "majorityGate"};//vetor com todos as por
 const char* orientationArray[4] = {"westEast", "southNorth", "eastWest", "northSouth"}; //orientação
 
 char* convertFile(char* input){
+
   FILE* inputFile; // .txt
   FILE* useFile; // .txt
   qcaUseGate* Gate;
   int totalofGates;
-  char useFileName[200], qcaFileName[200];
+  char useFileName[1024], qcaFileName[1024];
   inputFile = fopen(input,"r");
 
   if (input == NULL){
     printf("file not found");
     exit(1);
   }
+//change nothing
 
   //get the name of the files we are going to create;
-  strcpy(useFileName,"../PRfiles/files/");
-  char fileName[100];
+  strcpy(useFileName,"./PRfiles/files/");
+  char fileName[1024];
   fgets(fileName, sizeof fileName, inputFile);
   fileName[strlen(fileName) -1] = '\0';
   strcat(useFileName, (const char*)fileName);
-  printf("%s",useFileName);
+
 
   //get the qca file name
-  strcpy(qcaFileName,"../PRfiles/files/files/");
+
+  strcpy(qcaFileName,"./PRfiles/files/");
   fgets(fileName, sizeof fileName, inputFile);
   fileName[strlen(fileName) -1] = '\0';
   strcat(qcaFileName, (const char*)fileName);
-  printf("%s",qcaFileName);
-
   useFile = fopen (useFileName,"w");
+  if(useFile == NULL){
+    printf("couldn't create file");
+    exit(1);
+  }
+//till here
   totalofGates = getTotalofGates(inputFile);
   Gate = (qcaUseGate*) malloc(totalofGates*sizeof(qcaUseGate));
   printHeader(useFile, useFileName);
@@ -41,9 +47,8 @@ char* convertFile(char* input){
   createUseFile(useFile,totalofGates, Gate);
   fclose(useFile);
   free(Gate);
-
   createQFile(useFileName, qcaFileName);
-  return qcaFileName;
+  return fileName;
 }
 
 int getTotalofGates(FILE* input){
