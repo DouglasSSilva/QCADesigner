@@ -1,6 +1,6 @@
 #include "usedata.h"
 #include "createQcaFile.h"
-const char* gateArray[2] = {"inverter", "majorityGate"};//vetor com todos as portas implementadas
+const char* gateArray[2] = {"inverter", "majorityGate","and","or"};//vetor com todos as portas implementadas
 const char* orientationArray[4] = {"westEast", "southNorth", "eastWest", "northSouth"}; //orientação
 
 char* convertFile(char* input){
@@ -75,23 +75,12 @@ void createUseFile(FILE* output, int totalofGates, qcaUseGate* Gate){
 
 int getFileOrientation(int orientation, int useX, int useY){
 
-  if(useX % 2 == 0) {//USEX par
-      if (useY % 2 == 0){//USEY par
-        return (orientation == 0) ? 0 : 1;
-      }
-      else {//USEY impar
-        return (orientation == 0) ? 0 : 3;
-      }
-    }
-  else{//USEX impar
-    if (useY % 2 == 0){//USEY par
-      return (orientation == 0) ? 2 : 1;
-    }
-    else {//USEY impar
-      return (orientation == 0) ? 2 : 3;
-    }
+  if(orientation == 0){
+    return (useX % 2 == 0) ? 0 : 2;
   }
-
+  else{
+    return (useY % 2 == 0) ? 1 : 3;
+  }
 }
 
 
