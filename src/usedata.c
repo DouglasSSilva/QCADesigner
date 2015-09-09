@@ -80,24 +80,12 @@ void createUseFile(FILE* output, int totalofGates, qcaUseGate* Gate){
 }
 
 int getFileOrientation(int orientation, int useX, int useY){
-
-  if(useX % 2 == 0) {//USEX par
-      if (useY % 2 == 0){//USEY par
-        return (orientation == 0) ? 0 : 1;
-      }
-      else {//USEY impar
-        return (orientation == 0) ? 0 : 3;
-      }
-    }
-  else{//USEX impar
-    if (useY % 2 == 0){//USEY par
-      return (orientation == 0) ? 2 : 1;
-    }
-    else {//USEY impar
-      return (orientation == 0) ? 2 : 3;
-    }
+  if(orientation == 0){
+    return (useY % 2 == 0) ? 0 : 2;
   }
-
+  else{
+    return (useX % 2 == 0) ? 1 : 3;
+  }
 }
 
 

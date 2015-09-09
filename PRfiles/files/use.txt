@@ -2,99 +2,387 @@
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
 Gate: inverter 
-Gate Orientation: westEast 
+Gate Orientation: southNorth 
 useX: 0 
 useY: 0 
-FileName: inverter_westEast.qca 
+FileName: inverter_southNorth.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
-Gate Orientation: westEast 
+Gate Orientation: southNorth 
 useX: 0 
 useY: 1 
-FileName: inverter_westEast.qca 
+FileName: inverter_southNorth.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
-Gate Orientation: westEast 
+Gate Orientation: southNorth 
 useX: 0 
 useY: 2 
-FileName: inverter_westEast.qca 
+FileName: inverter_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 0 
+useY: 3 
+FileName: inverter_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 1 
+useY: 0 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 1 
+useY: 1 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 1 
+useY: 2 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 1 
+useY: 3 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 2 
+useY: 0 
+FileName: inverter_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 2 
+useY: 1 
+FileName: inverter_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 2 
+useY: 2 
+FileName: inverter_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 2 
+useY: 3 
+FileName: inverter_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 3 
+useY: 0 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 3 
+useY: 1 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 3 
+useY: 2 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 3 
+useY: 3 
+FileName: inverter_northSouth.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
 Gate Orientation: westEast 
 useX: 0 
-useY: 3 
+useY: 4 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 0 
+useY: 5 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 0 
+useY: 6 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 0 
+useY: 7 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 1 
+useY: 4 
 FileName: inverter_westEast.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
 Gate Orientation: eastWest 
 useX: 1 
-useY: 0 
+useY: 5 
 FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 1 
+useY: 6 
+FileName: inverter_westEast.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
 Gate Orientation: eastWest 
 useX: 1 
-useY: 1 
-FileName: inverter_eastWest.qca 
------------------------------------------------------------------------
-Gate: inverter 
-Gate Orientation: eastWest 
-useX: 1 
-useY: 2 
-FileName: inverter_eastWest.qca 
------------------------------------------------------------------------
-Gate: inverter 
-Gate Orientation: eastWest 
-useX: 1 
-useY: 3 
+useY: 7 
 FileName: inverter_eastWest.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
 Gate Orientation: westEast 
 useX: 2 
+useY: 4 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 2 
+useY: 5 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 2 
+useY: 6 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 2 
+useY: 7 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 3 
+useY: 4 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 3 
+useY: 5 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 3 
+useY: 6 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 3 
+useY: 7 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 4 
 useY: 0 
-FileName: inverter_westEast.qca 
+FileName: inverter_southNorth.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
-Gate Orientation: westEast 
-useX: 2 
+Gate Orientation: southNorth 
+useX: 4 
 useY: 1 
-FileName: inverter_westEast.qca 
+FileName: inverter_southNorth.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
-Gate Orientation: westEast 
-useX: 2 
+Gate Orientation: southNorth 
+useX: 4 
 useY: 2 
-FileName: inverter_westEast.qca 
+FileName: inverter_southNorth.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
-Gate Orientation: westEast 
-useX: 2 
+Gate Orientation: southNorth 
+useX: 4 
 useY: 3 
-FileName: inverter_westEast.qca 
+FileName: inverter_southNorth.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
-Gate Orientation: eastWest 
-useX: 3 
+Gate Orientation: northSouth 
+useX: 5 
 useY: 0 
-FileName: inverter_eastWest.qca 
+FileName: inverter_northSouth.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
-Gate Orientation: eastWest 
-useX: 3 
+Gate Orientation: northSouth 
+useX: 5 
 useY: 1 
-FileName: inverter_eastWest.qca 
+FileName: inverter_northSouth.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
-Gate Orientation: eastWest 
-useX: 3 
+Gate Orientation: northSouth 
+useX: 5 
 useY: 2 
-FileName: inverter_eastWest.qca 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 5 
+useY: 3 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 6 
+useY: 0 
+FileName: inverter_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 6 
+useY: 1 
+FileName: inverter_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 6 
+useY: 2 
+FileName: inverter_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 6 
+useY: 3 
+FileName: inverter_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 7 
+useY: 0 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 7 
+useY: 1 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 7 
+useY: 2 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: northSouth 
+useX: 7 
+useY: 3 
+FileName: inverter_northSouth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 8 
+useY: 4 
+FileName: inverter_westEast.qca 
 -----------------------------------------------------------------------
 Gate: inverter 
 Gate Orientation: eastWest 
-useX: 3 
-useY: 3 
+useX: 8 
+useY: 5 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 8 
+useY: 6 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 8 
+useY: 7 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 9 
+useY: 4 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 9 
+useY: 5 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 9 
+useY: 6 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 9 
+useY: 7 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 10 
+useY: 4 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 10 
+useY: 5 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 10 
+useY: 6 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 10 
+useY: 7 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 11 
+useY: 4 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 11 
+useY: 5 
+FileName: inverter_eastWest.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: westEast 
+useX: 11 
+useY: 6 
+FileName: inverter_westEast.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: eastWest 
+useX: 11 
+useY: 7 
 FileName: inverter_eastWest.qca 
 -----------------------------------------------------------------------
 end
