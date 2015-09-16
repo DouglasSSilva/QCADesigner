@@ -1,6 +1,6 @@
 #include "usedata.h"
 #include "createQcaFile.h"
-const char* gateArray[4] = {"inverter_", "majorityGate_","andOr","andOr"};//vetor com todos as portas implementadas
+const char* gateArray[4] = {"inverter_", "majorityGate_","and","Or"};//vetor com todos as portas implementadas
 const char* orientationArray[5] = {"westEast", "southNorth", "eastWest", "northSouth", ""}; //orientação
 
 char* convertFile(char* input){

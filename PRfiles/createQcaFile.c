@@ -34,6 +34,7 @@ void getUseData(FILE* useFile, FILE* qcaFile){
     fgets(line, sizeof line, useFile);
     fscanf(useFile, "useX: %d\n", &useX);
     fscanf(useFile, "useY: %d\n", &useY);
+    fscanf(useFile, "useY: %d\n", &fixed);
     fgets(fileName, sizeof fileName, useFile);
     memmove(fileName+0,fileName+10,50);
     strcpy(fileName, strtok(fileName," "));
@@ -110,7 +111,8 @@ void changeQCADesignObject(int dx, int dy, FILE* tempQCAFile, FILE* qcaFile){
 
 void changeQCADesignObjectArea(int dx,int  dy,FILE* tempQCAFile,FILE* qcaFile,char* line){
 
-  double x,y;
+  double x = 0.0;
+  double y = 0.0;
   fprintf(qcaFile, "%s\n", line);
   setNewObjectArea(tempQCAFile, qcaFile, x, y, dx, dy);
   fprintUnchanbleLines(tempQCAFile, qcaFile, 5);
@@ -119,7 +121,8 @@ void changeQCADesignObjectArea(int dx,int  dy,FILE* tempQCAFile,FILE* qcaFile,ch
 }
 
 void changeCellDotArea(int dx,int  dy,FILE* tempQCAFile,FILE* qcaFile){
-  double x,y;
+  double x = 0.0;
+  double y = 0.0;
   char line[100];
   setNewObjectArea(tempQCAFile, qcaFile, x, y, dx, dy);
   do{
@@ -131,7 +134,8 @@ void changeCellDotArea(int dx,int  dy,FILE* tempQCAFile,FILE* qcaFile){
 }
 
 void changeLabelArea(int dx,int  dy,FILE* tempQCAFile,FILE* qcaFile){
-  double x,y;
+  double x = 0.0;
+  double y = 0.0;
   char line[100];
   do {
     fgets(line, sizeof line, tempQCAFile);
