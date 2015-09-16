@@ -1,7 +1,7 @@
 #include "usedata.h"
 #include "createQcaFile.h"
-const char* gateArray[2] = {"inverter", "majorityGate","and","or"};//vetor com todos as portas implementadas
-const char* orientationArray[4] = {"westEast", "southNorth", "eastWest", "northSouth"}; //orientação
+const char* gateArray[4] = {"inverter_", "majorityGate_","andOr","andOr"};//vetor com todos as portas implementadas
+const char* orientationArray[5] = {"westEast", "southNorth", "eastWest", "northSouth", ""}; //orientação
 
 char* convertFile(char* input){
   FILE* inputFile; // .txt
@@ -54,7 +54,7 @@ int getTotalofGates(FILE* input){
 void readInput(FILE* input,int totalofGates, qcaUseGate* Gate){
   int i;
   for(i = 0; i < totalofGates; i++){
-    fscanf(input, "%d %d %d %d \n", &Gate[i].useX, &Gate[i].useY, &Gate[i].gateType, &Gate[i].gateOrientation);
+    fscanf(input, "%d %d %d %d %d ", &Gate[i].gateType, &Gate[i].gateOrientation, &Gate[i].useX, &Gate[i].useY,&Gate[i].fixed);
   }
 }
 
@@ -67,10 +67,31 @@ void createUseFile(FILE* output, int totalofGates, qcaUseGate* Gate){
     fprintf(output, "Gate Orientation: %s \n",  orientationArray[orientation]);
     fprintf(output, "useX: %d \n", Gate[i].useX);
     fprintf(output, "useY: %d \n", Gate[i].useY);
-    fprintf(output, "FileName: %s_%s.qca \n",gateArray[Gate[i].gateType],orientationArray[orientation]);
+    fprintf(output, "fixed: %d \n", Gate[i].fixed);
+    fprintf(output, "FileName: %s%s.qca \n",gateArray[Gate[i].gateType],orientationArray[orientation]);
     fprintf(output, "-----------------------------------------------------------------------\n");
   }
   fprintf(output,"end");
+}
+
+char* returnFixed(int fixed){
+  switch(fixed){
+    case 0:
+      return "east";
+      break;
+    case 1:
+      return "north";
+      break;
+    case 2:
+      return "west";
+      break;
+    case 3:
+      return "south";
+      break;
+    default:
+      return "none";
+      break;
+  }
 }
 
 int getFileOrientation(int orientation, int useX, int useY){
@@ -78,8 +99,11 @@ int getFileOrientation(int orientation, int useX, int useY){
   if(orientation == 0){
     return (useY % 2 == 0) ? 0 : 2;
   }
-  else{
+  else if(orientation == 1){
     return (useX % 2 == 0) ? 1 : 3;
+  }
+  else{
+    return 4;
   }
 }
 

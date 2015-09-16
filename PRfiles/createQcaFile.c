@@ -23,7 +23,7 @@ void createQFile(char* input, char* output){
 }
 
 void getUseData(FILE* useFile, FILE* qcaFile){
-  int useX, useY;
+  int useX, useY, fixed;
   char line [100];
   char fileName[100];
   while (!feof(useFile)){
