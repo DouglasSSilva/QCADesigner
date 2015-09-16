@@ -100,7 +100,7 @@ bounding_box.cxWorld=4.000000
 bounding_box.cyWorld=23.000000
 [#TYPE:QCADDesignObject]
 [#TYPE:QCADStretchyObject]
-psz=
+pszlea=
 [#TYPE:QCADLabel]
 [#TYPE:QCADCell]
 [TYPE:QCADCell]
