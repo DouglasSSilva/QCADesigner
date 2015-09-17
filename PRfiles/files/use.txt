@@ -1,32 +1,28 @@
--------------------------------USEFile files/use.txt----------------------------
+-------------------------------USEFile ./PRfiles/files/use.txt----------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
-Gate: inverter_ 
+Gate: (null) 
 Gate Orientation: southNorth 
-useX: 2 
-useY: 3 
-fixed: 4 
+useX: 0 
+useY: 1 
+FileName: (null)_southNorth.qca 
+-----------------------------------------------------------------------
+Gate: inverter 
+Gate Orientation: southNorth 
+useX: 4 
+useY: 1 
 FileName: inverter_southNorth.qca 
 -----------------------------------------------------------------------
-Gate: majorityGate_ 
-Gate Orientation: westEast 
-useX: 1 
-useY: 2 
-fixed: 4 
-FileName: majorityGate_westEast.qca 
+Gate: (null) 
+Gate Orientation: southNorth 
+useX: 2 
+useY: 4 
+FileName: (null)_southNorth.qca 
 -----------------------------------------------------------------------
-Gate: andOr 
-Gate Orientation:  
+Gate: (null) 
+Gate Orientation: southNorth 
 useX: 0 
 useY: 0 
-fixed: 3 
-FileName: andOr.qca 
------------------------------------------------------------------------
-Gate: andOr 
-Gate Orientation:  
-useX: 2 
-useY: 1 
-fixed: 2 
-FileName: andOr.qca 
+FileName: (null)_southNorth.qca 
 -----------------------------------------------------------------------
 end

@@ -1,6 +1,6 @@
 #include "usedata.h"
 #include "createQcaFile.h"
-const char* gateArray[4] = {"inverter_", "majorityGate_","and","Or"};//vetor com todos as portas implementadas
+const char* gateArray[4] = {"inverter_", "majorityGate_","and","or"};//vetor com todos as portas implementadas
 const char* orientationArray[5] = {"westEast", "southNorth", "eastWest", "northSouth", ""}; //orientação
 
 char* convertFile(char* input){
@@ -22,14 +22,12 @@ char* convertFile(char* input){
   fgets(fileName, sizeof fileName, inputFile);
   fileName[strlen(fileName) -1] = '\0';
   strcat(useFileName, (const char*)fileName);
-  printf("%s",useFileName);
 
   //get the qca file name
   strcpy(qcaFileName,"files/");
   fgets(fileName, sizeof fileName, inputFile);
   fileName[strlen(fileName) -1] = '\0';
   strcat(qcaFileName, (const char*)fileName);
-  printf("%s",qcaFileName);
 
   useFile = fopen (useFileName,"w");
   totalofGates = getTotalofGates(inputFile);
@@ -63,7 +61,7 @@ void createUseFile(FILE* output, int totalofGates, qcaUseGate* Gate){
   int i;
   for (i = 0; i<totalofGates; i++){
     orientation = getFileOrientation(Gate[i].gateOrientation, Gate[i].useX, Gate[i].useY);
-    fprintf(output, "Gate: %s \n", gateArray[Gate[i].gateType]);
+    fprintf(output, "Gate: %s-%d \n", gateArray[Gate[i].gateType], Gate[i].gateType);
     fprintf(output, "Gate Orientation: %s \n",  orientationArray[orientation]);
     fprintf(output, "useX: %d \n", Gate[i].useX);
     fprintf(output, "useY: %d \n", Gate[i].useY);
