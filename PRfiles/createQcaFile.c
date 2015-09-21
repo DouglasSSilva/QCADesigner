@@ -2,9 +2,11 @@
 #define cellSize 20;
 #define gridSize 5*cellSize;
 
+
 const char* changeableAreas[4] = {"[TYPE:QCADCell]", "[TYPE:QCADDesignObject]", "[TYPE:CELL_DOT]", "[TYPE:QCADLabel]"};
 const char* finishedAreas[5] = {"[#TYPE:CELL_DOT]", "[#TYPE:QCADLabel]", "[#TYPE:QCADLayer]", "[#TYPE:DESIGN]", "[#TYPE:QCADCell]"};
 const char* fixedCells[2] = {"positiveFixed.qca", "negativeFixed.qca"};
+
 void createQFile(char* input, char* output){
   FILE* useFile = fopen(input, "r");
   /*file with the data we want,takes from every qca file in the input and create
@@ -47,7 +49,7 @@ void getUseData(FILE* useFile, FILE* qcaFile){
     fgets(line, sizeof line, useFile);
     readQCAFileBuildNewOne(useX, useY, fileName, qcaFile, gateType,fixed);
   }
- fprintf(qcaFile, "%s\n",finishedAreas[2]);
+  fprintf(qcaFile, "%s\n",finishedAreas[2]);
   fprintf(qcaFile, "%s\n",finishedAreas[3]);
 }
 
@@ -76,7 +78,7 @@ void readQCAFileBuildNewOne(int useX, int useY, char* fileName,FILE* qcaFile, ch
     }
   }
   //eliminando o cabeçalho do arquivo qca;
-  changeQCADesignObject(dx, dy, tempQCAFile, qcaFile, gateType);
+  changeQCADesignObject(dx, dy, tempQCAFile, qcaFile, gateType, fixed);
   fclose(tempQCAFile);
 }
 
@@ -161,27 +163,4 @@ void changeLabelArea(int dx,int  dy,FILE* tempQCAFile,FILE* qcaFile){
 void setNewObjectArea(FILE* tempQCAFile, FILE* qcaFile, double x, double y, int dx, int dy){
   findData(x, dx, qcaFile, tempQCAFile,'=');
   findData(y,dy,qcaFile, tempQCAFile,'=');
-}
-
-void findData (double axis, int dAxis, FILE* qcaFile, FILE* tempQCAFile, char delim){
-  int i = 0;
-  char data[100];
-  data[i] = fgetc(tempQCAFile);
-  fputc(data[i],qcaFile);
-  while (data[i] != delim){
-    data[i] = fgetc(tempQCAFile);
-    fputc(data[i],qcaFile);
-  }
-  fscanf(tempQCAFile,"%lf",&axis);
-  double value = axis +dAxis;
-  fprintf(qcaFile,"%lf",value);
-}
-
-void fprintUnchanbleLines(FILE* tempQCAFile, FILE* qcaFile, int totalofLines){
-  int i;
-  char line[100];
-  for (i = 0; i < totalofLines; i++){
-      fgets(line, sizeof line, tempQCAFile);
-      fprintf(qcaFile, "%s", line);
-  }
 }

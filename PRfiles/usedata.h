@@ -9,7 +9,9 @@
 
 typedef struct qcaUseGate{
 
-    int useX, useY, gateType, gateOrientation, fixed;
+    int useX, useY;
+    int gateType, gateOrientation;
+    int fixedX, fixedY;
 
 }qcaUseGate;
 
@@ -19,4 +21,3 @@ void readInput(FILE* input,int totalofGates, qcaUseGate* Gate);
 void createUseFile(FILE* output, int totalofGates, qcaUseGate* Gate);
 void printHeader(FILE* output,char* outputName);
 int getFileOrientation(int orientation, int useX, int useY);
-char* returnFixed(int fixed);

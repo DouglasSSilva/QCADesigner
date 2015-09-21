@@ -1,28 +1,52 @@
--------------------------------USEFile ./PRfiles/files/use.txt----------------------------
+-------------------------------USEFile files/use.txt----------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
-Gate: (null) 
-Gate Orientation: southNorth 
-useX: 0 
-useY: 1 
-FileName: (null)_southNorth.qca 
------------------------------------------------------------------------
-Gate: inverter 
-Gate Orientation: southNorth 
-useX: 4 
-useY: 1 
-FileName: inverter_southNorth.qca 
------------------------------------------------------------------------
-Gate: (null) 
+Gate: inverter 0 
 Gate Orientation: southNorth 
 useX: 2 
-useY: 4 
-FileName: (null)_southNorth.qca 
+useY: 3 
+fixedX: -1 
+fixedY: -1 
+FileName: invertersouthNorth.qca 
 -----------------------------------------------------------------------
-Gate: (null) 
+Gate: majorityGate 1 
+Gate Orientation: westEast 
+useX: 1 
+useY: 2 
+fixedX: -1 
+fixedY: -1 
+FileName: majorityGatewestEast.qca 
+-----------------------------------------------------------------------
+Gate: andUSE 2 
 Gate Orientation: southNorth 
 useX: 0 
 useY: 0 
-FileName: (null)_southNorth.qca 
+fixedX: 2 
+fixedY: 0 
+FileName: majorityGatesouthNorth.qca 
+-----------------------------------------------------------------------
+Gate: orUSE 3 
+Gate Orientation: eastWest 
+useX: 2 
+useY: 1 
+fixedX: 0 
+fixedY: 2 
+FileName: majorityGateeastWest.qca 
+-----------------------------------------------------------------------
+Gate: andNormal 4 
+Gate Orientation: Normal 
+useX: 4 
+useY: 5 
+fixedX: 2 
+fixedY: 4 
+FileName: majorityGateNormal.qca 
+-----------------------------------------------------------------------
+Gate: orNormal 5 
+Gate Orientation: Normal 
+useX: 6 
+useY: 3 
+fixedX: 4 
+fixedY: 2 
+FileName: majorityGateNormal.qca 
 -----------------------------------------------------------------------
 end
