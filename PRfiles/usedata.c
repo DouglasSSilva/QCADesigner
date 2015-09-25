@@ -1,9 +1,9 @@
 #include "usedata.h"
 #include "createQcaFile.h"
-const char* gateArray[6] = {"inverter", "majorityGate","andUSE","orUSE" , "andNormal", "orNormal"};//vetor com todos as portas implementadas
+const char* gateArray[6] = {"inverter", "majorityGate", "andUSE", "orUSE", "andNormal", "orNormal"};//vetor com todos as portas implementadas
 const char* orientationArray[5] = {"westEast", "southNorth", "eastWest", "northSouth", "Normal"}; //orientação
 
-char* convertFile(char* input){
+const char* convertFile(char* input){
   FILE* inputFile; // .txt
   FILE* useFile; // .txt
   qcaUseGate* Gate;
@@ -23,23 +23,26 @@ char* convertFile(char* input){
   fileName[strlen(fileName) -1] = '\0';
   strcat(useFileName, (const char*)fileName);
 
-  //get the qca file name
+  //get the qca file name setting in the exact folder to find it
   strcpy(qcaFileName,"files/");
   fgets(fileName, sizeof fileName, inputFile);
   fileName[strlen(fileName) -1] = '\0';
   strcat(qcaFileName, (const char*)fileName);
 
+  //print the header so we identify the file
   useFile = fopen (useFileName,"w");
   totalofGates = getTotalofGates(inputFile);
   Gate = (qcaUseGate*) malloc(totalofGates*sizeof(qcaUseGate));
   printHeader(useFile, useFileName);
   readInput(inputFile, totalofGates, Gate);
   fclose(inputFile);
+
   createUseFile(useFile,totalofGates, Gate);
+
   fclose(useFile);
   free(Gate);
 
-  createQFile(useFileName, qcaFileName);
+  getDataCreateFile(useFileName, qcaFileName);
   return qcaFileName;
 }
 
@@ -57,29 +60,34 @@ void readInput(FILE* input,int totalofGates, qcaUseGate* Gate){
 }
 
 void createUseFile(FILE* output, int totalofGates, qcaUseGate* Gate){
+
+  /*Create a file with the data from each gate,
+   this file will be read so we know wich file to use while
+   running the algorithm */
   int orientation;
   int i;
   int gateName = 0;
+  fprintf(output, "Total of gates: %d\n", totalofGates);
+  fprintf(output, "-----------------------------------------------------------------------\n");
+
   for (i = 0; i<totalofGates; i++){
     if(Gate[i].gateType < 2){
       gateName = Gate[i].gateType;
-      printf("%d \n", gateName);
     }
     else{
       gateName = 1;
-      printf("%d \n", gateName);
+
     }
     orientation = getFileOrientation(Gate[i].gateOrientation, Gate[i].useX, Gate[i].useY);
-    fprintf(output, "Gate: %s %d \n", gateArray[Gate[i].gateType], Gate[i].gateType);
-    fprintf(output, "Gate Orientation: %s \n",  orientationArray[orientation]);
-    fprintf(output, "useX: %d \n", Gate[i].useX);
-    fprintf(output, "useY: %d \n", Gate[i].useY);
-    fprintf(output, "fixedX: %d \n", Gate[i].fixedX);
-    fprintf(output, "fixedY: %d \n", Gate[i].fixedY);
-    fprintf(output, "FileName: %s%s.qca \n",gateArray[gateName],orientationArray[orientation]);
+    fprintf(output, "Gate: %d %s\n", Gate[i].gateType, gateArray[Gate[i].gateType] );
+    fprintf(output, "Gate Orientation: %s\n",  orientationArray[orientation]);
+    fprintf(output, "useX: %d\n", Gate[i].useX);
+    fprintf(output, "useY: %d\n", Gate[i].useY);
+    fprintf(output, "fixedX: %d\n", Gate[i].fixedX);
+    fprintf(output, "fixedY: %d\n", Gate[i].fixedY);
+    fprintf(output, "FileName: %s%s.qca\n",gateArray[gateName],orientationArray[orientation]);
     fprintf(output, "-----------------------------------------------------------------------\n");
   }
-  fprintf(output,"end");
 }
 
 int getFileOrientation(int orientation, int useX, int useY){

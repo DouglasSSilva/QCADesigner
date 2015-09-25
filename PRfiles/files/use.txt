@@ -1,52 +1,53 @@
 -------------------------------USEFile files/use.txt----------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
-Gate: inverter 0 
-Gate Orientation: southNorth 
-useX: 2 
-useY: 3 
-fixedX: -1 
-fixedY: -1 
-FileName: invertersouthNorth.qca 
+Total of gates: 6
 -----------------------------------------------------------------------
-Gate: majorityGate 1 
-Gate Orientation: westEast 
-useX: 1 
-useY: 2 
-fixedX: -1 
-fixedY: -1 
-FileName: majorityGatewestEast.qca 
+Gate: 0 inverter
+Gate Orientation: southNorth
+useX: 2
+useY: 3
+fixedX: -1
+fixedY: -1
+FileName: invertersouthNorth.qca
 -----------------------------------------------------------------------
-Gate: andUSE 2 
-Gate Orientation: southNorth 
-useX: 0 
-useY: 0 
-fixedX: 2 
-fixedY: 0 
-FileName: majorityGatesouthNorth.qca 
+Gate: 1 majorityGate
+Gate Orientation: westEast
+useX: 1
+useY: 2
+fixedX: -1
+fixedY: -1
+FileName: majorityGatewestEast.qca
 -----------------------------------------------------------------------
-Gate: orUSE 3 
-Gate Orientation: eastWest 
-useX: 2 
-useY: 1 
-fixedX: 0 
-fixedY: 2 
-FileName: majorityGateeastWest.qca 
+Gate: 2 andUSE
+Gate Orientation: southNorth
+useX: 0
+useY: 0
+fixedX: 2
+fixedY: 0
+FileName: majorityGatesouthNorth.qca
 -----------------------------------------------------------------------
-Gate: andNormal 4 
-Gate Orientation: Normal 
-useX: 4 
-useY: 5 
-fixedX: 2 
-fixedY: 4 
-FileName: majorityGateNormal.qca 
+Gate: 3 orUSE
+Gate Orientation: eastWest
+useX: 2
+useY: 1
+fixedX: 0
+fixedY: 2
+FileName: majorityGateeastWest.qca
 -----------------------------------------------------------------------
-Gate: orNormal 5 
-Gate Orientation: Normal 
-useX: 6 
-useY: 3 
-fixedX: 4 
-fixedY: 2 
-FileName: majorityGateNormal.qca 
+Gate: 4 andNormal
+Gate Orientation: Normal
+useX: 4
+useY: 5
+fixedX: 2
+fixedY: 4
+FileName: majorityGateNormal.qca
 -----------------------------------------------------------------------
-end
+Gate: 5 orNormal
+Gate Orientation: Normal
+useX: 6
+useY: 3
+fixedX: 4
+fixedY: 2
+FileName: majorityGateNormal.qca
+-----------------------------------------------------------------------

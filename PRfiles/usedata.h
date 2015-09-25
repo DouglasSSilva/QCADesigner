@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 /*
   A gate has some exclusively characterístics dependind on the gate,
   and, or have fixed cells, while majority and inverter do not have,
@@ -16,7 +16,7 @@ typedef struct qcaUseGate{
 }qcaUseGate;
 
 int getTotalofGates(FILE* input);
-char* convertFile(char* input);
+const char* convertFile(char* input);
 void readInput(FILE* input,int totalofGates, qcaUseGate* Gate);
 void createUseFile(FILE* output, int totalofGates, qcaUseGate* Gate);
 void printHeader(FILE* output,char* outputName);
