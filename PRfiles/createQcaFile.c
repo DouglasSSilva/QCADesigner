@@ -5,7 +5,7 @@
 const char* changeableAreas[5] = {"[TYPE:QCADCell]", "[TYPE:QCADDesignObject]", "[TYPE:CELL_DOT]", "[TYPE:QCADLabel]", "[TYPE:QCADStretchyObject]"};
 const char* finishedAreas[7] = {"[#TYPE:QCADDesignObject]","[#TYPE:CELL_DOT]", "[#TYPE:QCADLabel]", "[#TYPE:QCADLayer]", "[#TYPE:DESIGN]", "[#TYPE:QCADCell]",
 "[#TYPE:QCADStretchyObject]"};
-const char* fixedCells[2] = {"positiveFixed.qca", "negativeFixed.qca"};
+const char* fixedCells[2] = {"gates/positiveFixed.qca", "gates/negativeFixed.qca"};
 
 void getDataCreateFile(char* input, char* output){
   FILE* useFile = fopen(input, "r");
@@ -56,12 +56,13 @@ void createQCAFile(FILE* qcaFile, QCAData * data, int totalofGates){
   }
   printQcaHeader(tempQCAFile, qcaFile);
 
+
+
   for (counter = 0; counter < totalofGates; counter++){
 
     strcpy(fname, "gates/");
     strcat(fname, data[counter].fileName);
     tempQCAFile = fopen(fname, "r");
-
     dx = data[counter].useX * gridSize;
     dy = data[counter].useY * gridSize;
     dxdy[0] = dx;
@@ -76,8 +77,10 @@ void createQCAFile(FILE* qcaFile, QCAData * data, int totalofGates){
 
        // dx and dy already know the use area now they need to know where in the
        //grid the fixed cell is
-      dx +=    data[counter].fixedX * cellSize ;
+      dx +=    data[counter].fixedX * cellSize;
+      dx += cellSize;
       dy +=    data[counter].fixedY * cellSize ;
+      dy += cellSize;
       fixeddxdy[0] = dx;
       fixeddxdy[1] = dy;
       parseGatewithFixedCell(tempQCAFile, qcaFile, dxdy, fixeddxdy, data[counter].gateType);
@@ -108,6 +111,7 @@ void parseGatewithoutFixedCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
         fprintf(qcaFile, "%s\n", line);
 
         //printing the design object area inside the new file
+        changeXYData (dxdy, qcaFile, tempQCAFile, '=');
         printQCADesignObject(tempQCAFile,qcaFile, dxdy);
         fprintUnchanbleLines(tempQCAFile, qcaFile, 6);
         totalofDots = getTotalofDots(tempQCAFile,qcaFile, '=');
@@ -132,7 +136,6 @@ void parseGatewithoutFixedCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
       }
 
       strcpy(line,  getFileLine(tempQCAFile));
-      printf("%s\n", line);
       if(strcmp(line, finishedAreas[5]) == 0){
         //cell was finished we can move on to the next cell or to close the file
         fprintf(qcaFile, "%s\n", line);
@@ -186,7 +189,6 @@ void parseGatewithoutFixedCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
 void printQCADesignObject(FILE* tempQCAFile,FILE* qcaFile, double* dxdy){
 
   char line[100];
-  changeXYData (dxdy, qcaFile, tempQCAFile, '=');
   fprintUnchanbleLines(tempQCAFile, qcaFile, 4);
   changeXYData (dxdy, qcaFile, tempQCAFile, '=');
   strcpy(line,  getFileLine(tempQCAFile));
@@ -213,20 +215,180 @@ void changeDesignObjectLabel(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
 void parseGatewithFixedCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy, double* fixeddxdy, int gateType){
   char line[100];
   int dotCounter, totalofDots;
+  double *xyFixedCheck;
   FILE* fixedGateFile;
   int foundfixed = 0;
-  printf("%lf %lf \n", fixeddxdy[0], fixeddxdy[1]);
-  int fixedFile = getFixedFile(gateType);
+  int fixedFile = 0; // getFixedFile(gateType);
 
-  strcpy(line,  getFileLine(tempQCAFile));
+  while(!feof(tempQCAFile)){
+    strcpy(line,  getFileLine(tempQCAFile));
+    if(strcmp(line,changeableAreas[0]) == 0){
+      fprintf(qcaFile, "%s\n", line);
+      strcpy(line,  getFileLine(tempQCAFile));
 
-  if(strcmp(line,changeableAreas[0]) == 0){
-    getXY();
+      if(strcmp(line,changeableAreas[1]) == 0){
+
+        fprintf(qcaFile, "%s\n", line);
+        xyFixedCheck = getXY(dxdy, qcaFile, tempQCAFile, '=');
+
+        if(foundfixed == 0 && xyFixedCheck[0] == fixeddxdy[0] && xyFixedCheck[1] == fixeddxdy[1]){
+
+          foundfixed = 1;
+          //we have a fixed cell;
+          fixedFile =  getFixedFile(gateType);//getting wich fixedFile we should use for the cell
+          fixedGateFile = fopen(fixedCells[fixedFile], "r");
+          if(fixedGateFile == NULL){
+            perror("error while opening the file \n");
+            exit(EXIT_FAILURE);
+          }
+
+          strcpy(line,  getFileLine(tempQCAFile));
+          fprintf(qcaFile, "%s\n", line);
+          printFixedDataDesignObject(dxdy, fixedGateFile, qcaFile, tempQCAFile);
+          totalofDots = getTotalofDots(tempQCAFile,qcaFile, '=');
+
+          for(dotCounter = 0; dotCounter < totalofDots; dotCounter++){
+
+            strcpy(line,  getFileLine(tempQCAFile));
+            if(strcmp(line,changeableAreas[2]) == 0){
+
+              fprintf(qcaFile, "%s\n", line);
+              printFixedDotArea(fixedGateFile, tempQCAFile, qcaFile, dxdy);
+
+            }
+
+          }
+
+          strcpy(line,  getFileLine(tempQCAFile));
+          fprintf(qcaFile, "%s\n", line);
+          fclose(fixedGateFile);
+
+        }
+
+        else{
+         //it's not a fixed cell we can run the file normally
+          printQCADesignObject(tempQCAFile,qcaFile, dxdy);
+          fprintUnchanbleLines(tempQCAFile, qcaFile, 6);
+          totalofDots = getTotalofDots(tempQCAFile,qcaFile, '=');
+          //with the total of dots in hand we work on printing the dots data
+          for(dotCounter = 0; dotCounter < totalofDots; dotCounter ++){
+            strcpy(line,  getFileLine(tempQCAFile));
+            if(strcmp(line,changeableAreas[2]) == 0){
+              fprintf(qcaFile, "%s\n", line);
+              printDotArea(tempQCAFile, qcaFile,  dxdy);
+            }
+
+            else{
+                perror("an error occured while reading the file 2");
+                exit(0);
+            }
+          }
+          strcpy(line,  getFileLine(tempQCAFile));
+          if(strcmp(line, finishedAreas[5]) == 0){
+            //cell was finished we can move on to the next cell or to close the file
+            fprintf(qcaFile, "%s\n", line);
+            continue;
+          }
+          else if (strcmp(line, changeableAreas[3]) == 0){
+            //this cell has a label which need to be inside the design
+            fprintf(qcaFile, "%s\n", line);
+            strcpy(line,  getFileLine(tempQCAFile));
+
+            if(strcmp(line, changeableAreas[4]) == 0){
+              //it is a stretchy object needs to be shown in file
+              fprintf(qcaFile, "%s\n", line);
+              strcpy(line,  getFileLine(tempQCAFile));
+
+              if(strcmp(line, changeableAreas[1]) == 0){
+                //we change the design object aspects and insert into file here
+                fprintf(qcaFile, "%s\n", line);
+                changeDesignObjectLabel(tempQCAFile, qcaFile, dxdy);
+                //end printing the [#TYPE:QCADesignObject]
+              }
+
+              else{
+                perror("an error occured while reading the file 5");
+                exit(0);
+              }
+
+              strcpy(line,  getFileLine(tempQCAFile));
+              while(strcmp(line, finishedAreas[5]) != 0){
+                // until the cell is finished
+                fprintf(qcaFile, "%s\n", line);
+                strcpy(line,  getFileLine(tempQCAFile));
+              }
+              fprintf(qcaFile, "%s\n", line);
+
+            }
+            else {
+              perror("an error occured while reading the file 4");
+              exit(0);
+            }
+          }
+
+          else {
+            perror("an error occured while reading the file 3");
+            exit(0);
+          }
+
+          if(feof(tempQCAFile)){
+            break;
+          }
+        }
+      }
+      else {
+        perror("an error occured while reading the file 2");
+        exit(0);
+      }
+    }
+
   }
-  else {
-    perror("an error occured while reading the file 1");
-    exit(0);
+
+
+}
+
+void printFixedDataDesignObject(double *dxdy, FILE* fixedGateFile, FILE* qcaFile, FILE* tempQCAFile){
+
+  int counter;
+  for(counter = 0; counter < 3; counter++){
+
+    //the next 3 lines has important data related to fixed cells:
+    //clr.red, clr.green e clr.blue
+    printonFixedDataArea(fixedGateFile, qcaFile, tempQCAFile, '=');
+
   }
+  changeXYData (dxdy, qcaFile, tempQCAFile, '=');
+  fprintUnchanbleLines(tempQCAFile, qcaFile, 8);
+  printonFixedDataArea(fixedGateFile, qcaFile, tempQCAFile, '=');
+
+}
 
 
+void printonFixedDataArea(FILE* fixedGateFile, FILE* qcaFile, FILE* tempQCAFile, char delim){
+
+  char line;
+  char value[50];
+
+  line = fgetc(tempQCAFile);
+  line = fgetc(fixedGateFile);
+
+  fputc(line,qcaFile);
+  while (line != delim){
+    line = fgetc(tempQCAFile);
+    line = fgetc(fixedGateFile);
+    fputc(line,qcaFile);
+  }
+  fgets(value, sizeof value, tempQCAFile);
+  fgets(value, sizeof value, fixedGateFile);
+  //the value from the fixed file is the one to be printed in the qca file
+  fprintf(qcaFile,"%s",value);
+
+
+}
+
+void printFixedDotArea(FILE* fixedGateFile, FILE* tempQCAFile,FILE* qcaFile, double* dxdy){
+  changeXYData (dxdy, qcaFile, tempQCAFile, '=');
+  fprintUnchanbleLines(tempQCAFile, qcaFile, 1);
+  printonFixedDataArea(fixedGateFile, qcaFile, tempQCAFile, '=');
+  fprintUnchanbleLines(tempQCAFile, qcaFile, 3);
 }

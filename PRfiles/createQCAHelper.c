@@ -97,11 +97,34 @@ int getTotalofDots(FILE* tempQCAFile, FILE* qcaFile, char delim){
 }
 
 
-void getFixedFile(int gateType){
+int getFixedFile(int gateType){
     if (gateType  == 2 || gateType == 5){
         return 0;
     }
     else{
       return 1;
     }
+}
+
+double* getXY(double *xyData, FILE* qcaFile, FILE* tempQCAFile, char delim){
+
+  char line;
+  double Axis[2] = {0.0, 0.0};
+  int counter;
+  for (counter = 0; counter < 2; counter++){
+    //get char by char from line until the delim so we can put the new value
+    //after it
+    line = fgetc(tempQCAFile);
+    fputc(line,qcaFile);
+    while (line != delim){
+      line = fgetc(tempQCAFile);
+      fputc(line,qcaFile);
+    }
+    //updating with the new values;
+    fscanf(tempQCAFile,"%lf",&Axis[counter]);
+    Axis[counter] += xyData[counter];
+    fprintf(qcaFile,"%lf\n",Axis[counter]);
+    line = fgetc(tempQCAFile);
+  }
+  return Axis;
 }

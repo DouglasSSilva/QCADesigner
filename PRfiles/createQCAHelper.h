@@ -16,4 +16,6 @@ void getDatafromUseFile(FILE* useFile, QCAData* data, int totalofGates);
 void printQcaHeader(FILE* tempQCAFile, FILE* qcaFile);
 char* getFileLine(FILE* tempQCAFile);
 int getTotalofDots(FILE* tempQCAFile, FILE* qcaFile, char delim);
-void getFixedFile(int gateType);
+int getFixedFile(int gateType);
+void printonFixedDataArea(FILE* fixedGateFile, FILE* qcaFile, FILE* tempQCAFile, char delim);
+double* getXY(double *xyData, FILE* qcaFile, FILE* tempQCAFile, char delim);

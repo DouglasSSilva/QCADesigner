@@ -23,16 +23,16 @@ Gate: 2 andUSE
 Gate Orientation: southNorth
 useX: 0
 useY: 0
-fixedX: 2
-fixedY: 0
+fixedX: 4
+fixedY: 2
 FileName: majorityGatesouthNorth.qca
 -----------------------------------------------------------------------
 Gate: 3 orUSE
 Gate Orientation: eastWest
 useX: 2
 useY: 1
-fixedX: 0
-fixedY: 2
+fixedX: 2
+fixedY: 0
 FileName: majorityGateeastWest.qca
 -----------------------------------------------------------------------
 Gate: 4 andNormal

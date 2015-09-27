@@ -9,3 +9,5 @@ void printDotArea(FILE* tempQCAFile,FILE* qcaFile, double* dxdy);
 void changeDesignObjectLabel(FILE* tempQCAFile, FILE* qcaFile, double* dxdy);
 void parseGatewithoutFixedCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy);
 void parseGatewithFixedCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy, double* fixeddxdy, int gateType);
+void printFixedDotArea(FILE* fixedGateFile, FILE* tempQCAFile,FILE* qcaFile, double* dxdy);
+void printFixedDataDesignObject(double *dxdy, FILE* fixedGateFile, FILE* qcaFile, FILE* tempQCAFile);
