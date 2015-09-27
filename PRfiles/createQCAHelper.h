@@ -10,6 +10,10 @@ typedef struct QCAData{
 }QCAData;
 
 
-void findData (double axis, int dAxis, FILE* qcaFile, FILE* tempQCAFile, char delim);
-void fprintUnchanbleLines(FILE* tempQCAFile, FILE* qcaFiltae, int totalofLines);
+void changeXYData (double *xyData, FILE* qcaFile, FILE* tempQCAFile, char delim);
+void fprintUnchanbleLines(FILE* tempQCAFile, FILE* qcaFile, int totalofLines);
 void getDatafromUseFile(FILE* useFile, QCAData* data, int totalofGates);
+void printQcaHeader(FILE* tempQCAFile, FILE* qcaFile);
+char* getFileLine(FILE* tempQCAFile);
+int getTotalofDots(FILE* tempQCAFile, FILE* qcaFile, char delim);
+void getFixedFile(int gateType);

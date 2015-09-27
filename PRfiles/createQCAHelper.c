@@ -1,31 +1,42 @@
 #include "createQCAHelper.h"
 
-void findData (double axis, int dAxis, FILE* qcaFile, FILE* tempQCAFile, char delim){
+void changeXYData (double *xyData, FILE* qcaFile, FILE* tempQCAFile, char delim){
+
   int i = 0;
-  char data[100];
-  data[i] = fgetc(tempQCAFile);
-  fputc(data[i],qcaFile);
-  while (data[i] != delim){
-    data[i] = fgetc(tempQCAFile);
-    fputc(data[i],qcaFile);
+  char line[100];
+  double Axis = 0.0;
+  int counter;
+  for (counter = 0; counter < 2; counter++){
+    //get char by char from line until the delim so we can put the new value
+    //after it
+    line[i] = fgetc(tempQCAFile);
+    fputc(line[i],qcaFile);
+    while (line[i] != delim){
+      line[i] = fgetc(tempQCAFile);
+      fputc(line[i],qcaFile);
+    }
+    //updating with the new values;
+    fscanf(tempQCAFile,"%lf",&Axis);
+    Axis += xyData[counter];
+    fprintf(qcaFile,"%lf\n",Axis);
+    line[i] = fgetc(tempQCAFile);
   }
-  fscanf(tempQCAFile,"%lf",&axis);
-  double value = axis +dAxis;
-  fprintf(qcaFile,"%lf",value);
+
 }
 
 void fprintUnchanbleLines(FILE* tempQCAFile, FILE* qcaFile, int totalofLines){
-  int i;
   char line[100];
-  for (i = 0; i < totalofLines; i++){
-      fgets(line, sizeof line, tempQCAFile);
-      fprintf(qcaFile, "%s", line);
+  int counter;
+  for(counter = 0; counter < totalofLines; counter++ ){
+    fgets(line, sizeof line, tempQCAFile);
+    fprintf(qcaFile, "%s", line);
   }
 }
 
 void getDatafromUseFile(FILE* useFile, QCAData* data, int totalofGates){
   int i;
   char line [100];
+  char* fName;
   for(i = 0; i < totalofGates; i++){
     fgets(line, sizeof line, useFile);
     //getting the gate data and storing it inside the structure QCADAta for each
@@ -40,8 +51,57 @@ void getDatafromUseFile(FILE* useFile, QCAData* data, int totalofGates){
     fgets(line, sizeof line, useFile);
     fscanf(useFile, "FileName: %s\n", line);
     //organizing the data so we have only the fileName we want;
-    data[i].fileName = strstr(line, " ");
-    data[i].fileName = strtok(data[i].fileName, "\n");
-    memmove(data[i].fileName, data[i].fileName+1, strlen(data[i].fileName) -1);
+    fName = strstr(line, " ");
+    fName = strtok(fName, "\n");
+    data[i].fileName = (char*) malloc( (sizeof (char)) * strlen(fName));
+    strcpy(data[i].fileName, fName);
+    memmove(data[i].fileName, data[i].fileName+1, strlen(data[i].fileName));
+
   }
+}
+void printQcaHeader(FILE* tempQCAFile, FILE* qcaFile){
+  char line[100];
+  int counter = 0;
+  while(!feof(tempQCAFile)){
+    if(counter > 34){
+      break;
+    }
+    fgets(line, sizeof line, tempQCAFile);
+    fprintf(qcaFile, "%s",line);
+    counter++;
+  }
+  fclose(tempQCAFile);
+}
+
+
+char* getFileLine(FILE* tempQCAFile){
+  char line[100];
+  fgets(line, sizeof line, tempQCAFile);
+  strcpy(line,  strtok(line, "\n"));
+  return (char*) line;
+}
+
+int getTotalofDots(FILE* tempQCAFile, FILE* qcaFile, char delim){
+  char line;
+  int totalofDots;
+  line = fgetc(tempQCAFile);
+  fputc(line,qcaFile);
+  while (line != delim){
+    line = fgetc(tempQCAFile);
+    fputc(line,qcaFile);
+  }
+  fscanf(tempQCAFile, "%d", &totalofDots);
+  fprintf(qcaFile, "%d\n",totalofDots);
+  line = fgetc(tempQCAFile);
+  return totalofDots;
+}
+
+
+void getFixedFile(int gateType){
+    if (gateType  == 2 || gateType == 5){
+        return 0;
+    }
+    else{
+      return 1;
+    }
 }

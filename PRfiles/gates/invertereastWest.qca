@@ -456,5 +456,3 @@ spin=0.000000
 potential=0.000000
 [#TYPE:CELL_DOT]
 [#TYPE:QCADCell]
-[#TYPE:QCADLayer]
-[#TYPE:DESIGN]

@@ -12,8 +12,8 @@ const char* convertFile(char* input){
   inputFile = fopen(input,"r");
 
   if (input == NULL){
-    printf("file not found");
-    exit(1);
+    perror("error while opening the file \n");
+    exit(EXIT_FAILURE);
   }
 
   //get the name of the files we are going to create;
