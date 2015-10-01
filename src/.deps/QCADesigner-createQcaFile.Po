@@ -1,6 +1,6 @@
 QCADesigner-createQcaFile.o: createQcaFile.c /usr/include/stdc-predef.h \
- createQcaFile.h /usr/include/stdio.h /usr/include/features.h \
- /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ createQcaFile.h createQCAHelper.h /usr/include/stdio.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
@@ -36,6 +36,8 @@ QCADesigner-createQcaFile.o: createQcaFile.c /usr/include/stdc-predef.h \
 /usr/include/stdc-predef.h:
 
 createQcaFile.h:
+
+createQCAHelper.h:
 
 /usr/include/stdio.h:
 

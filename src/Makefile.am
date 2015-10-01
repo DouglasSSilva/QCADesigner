@@ -96,6 +96,7 @@ QCADesigner_SOURCES = \
 	USE_size_setup_dialog.c                 USE_size_setup_dialog.h \
 	usedata.c																usedata.h \
 	createQcaFile.c													createQcaFile.h \
+	createQCAHelper.c												createQCAHelper.h \
 	support.c                               support.h \
 	translate_selection_dialog.c            translate_selection_dialog.h \
 	vector_table.c                          vector_table.h \

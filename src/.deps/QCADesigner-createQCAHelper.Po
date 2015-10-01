@@ -1,6 +1,6 @@
-QCADesigner-usedata.o: usedata.c /usr/include/stdc-predef.h usedata.h \
- /usr/include/stdio.h /usr/include/features.h \
- /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+QCADesigner-createQCAHelper.o: createQCAHelper.c \
+ /usr/include/stdc-predef.h createQCAHelper.h /usr/include/stdio.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
@@ -31,12 +31,11 @@ QCADesigner-usedata.o: usedata.c /usr/include/stdc-predef.h usedata.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/string.h \
  /usr/include/xlocale.h /usr/include/x86_64-linux-gnu/bits/string.h \
  /usr/include/x86_64-linux-gnu/bits/string2.h \
- /usr/include/x86_64-linux-gnu/bits/string3.h createQcaFile.h \
- createQCAHelper.h
+ /usr/include/x86_64-linux-gnu/bits/string3.h
 
 /usr/include/stdc-predef.h:
 
-usedata.h:
+createQCAHelper.h:
 
 /usr/include/stdio.h:
 
@@ -121,7 +120,3 @@ usedata.h:
 /usr/include/x86_64-linux-gnu/bits/string2.h:
 
 /usr/include/x86_64-linux-gnu/bits/string3.h:
-
-createQcaFile.h:
-
-createQCAHelper.h:

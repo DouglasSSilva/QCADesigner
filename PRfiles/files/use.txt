@@ -1,7 +1,7 @@
 -------------------------------USEFile files/use.txt----------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
-Total of gates: 6
+Total of gates: 7
 -----------------------------------------------------------------------
 Gate: 0 inverter
 Gate Orientation: southNorth
@@ -49,5 +49,13 @@ useX: 6
 useY: 3
 fixedX: 4
 fixedY: 2
+FileName: majorityGateNormal.qca
+-----------------------------------------------------------------------
+Gate: 5 orNormal
+Gate Orientation: Normal
+useX: 2
+useY: 5
+fixedX: 2
+fixedY: 0
 FileName: majorityGateNormal.qca
 -----------------------------------------------------------------------

@@ -2799,9 +2799,11 @@ void placementAndRouting_file_operations (GtkWidget *widget, gpointer user_data)
   char fileName[1024];
   strcpy(fileName, convertFile((char*)pszFName));
   char completeFileName[1024];
-  strcat(completeFileName, PACKAGE_SOURCE_DIR);
-  strcat(completeFileName, "/PRfiles/files/");
-  strcat(completeFileName, (char*)fileName);
+  sprintf(completeFileName, "%s/PRfiles/files/%s.qca", PACKAGE_SOURCE_DIR, fileName);
+  printf("%s\n", fileName);
+  //strcat(completeFileName, PACKAGE_SOURCE_DIR);
+  //strcat(completeFileName, "/PRfiles/files/");
+  //strcat(completeFileName, (char*)fileName);
   openPlacementFile(completeFileName, fFileOp, pszCurrent, widget);
 }
 
