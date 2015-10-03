@@ -562,7 +562,7 @@ void layer_properties_button_clicked (GtkWidget *widget, gpointer data)
 void bus_layout_button_clicked (GtkWidget *widget, gpointer data)
   {get_bus_layout_from_user (GTK_WINDOW (main_window.main_window), project_options.design->bus_layout) ;}
 
-//Thamara
+/*-------------------------------------------------Thamara-----------------------------------------------*/
 
 char* get_standard_cell_name (int selected) {
   switch (selected) {
@@ -580,8 +580,12 @@ char* get_standard_cell_name (int selected) {
     default: return "";
   }
 }
-void use_import_standard_cell_button_clicked (GtkWidget *widget, gpointer data)
-  {
+void use_import_standard_cell_button_clicked (GtkWidget *widget, gpointer data){
+
+  /*-------------------------------------------- Douglas Sales LOCALE - 02/10/2015-----------------------------*/
+    forceLocale();
+  /*-------------------------------------------- Douglas Sales LOCALE - 02/10/2015-----------------------------*/
+
     if (project_options.USE_size != 5) {
       GtkWidget *msg = NULL ;
       gtk_dialog_run (GTK_DIALOG (msg = gtk_message_dialog_new (GTK_WINDOW (main_window.main_window), GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
@@ -653,8 +657,7 @@ void use_button_clicked (GtkWidget *widget, gpointer data)
     gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(main_window.show_USE_clocking_scheme_menu_item), FALSE);
   }
 };
-
-//Thamara
+/*-------------------------------------------------Thamara-----------------------------------------------*/
 
 void reorder_layers_button_clicked (GtkWidget *widget, gpointer user_data)
   {
@@ -1041,8 +1044,10 @@ void on_clock_increment_menu_item_activate(GtkMenuItem * menuitem, gpointer user
 
 }//on_clock_increment_menu_item_activate
 
-void file_operations (GtkWidget *widget, gpointer user_data)
-  {
+void file_operations (GtkWidget *widget, gpointer user_data){
+  /*-------------------------------------------- Douglas Sales LOCALE - 02/10/2015-----------------------------*/
+    forceLocale();
+  /*-------------------------------------------- Douglas Sales LOCALE - 02/10/2015-----------------------------*/
   DESIGN *the_new_design = NULL ;
   int fFileOp = (int)user_data ;
 #ifdef STDIO_FILEIO
@@ -1981,10 +1986,18 @@ static void rotate_single_cell_cb (DESIGN *design, QCADDesignObject *obj, gpoint
     qcad_cell_rotate_dots (QCAD_CELL (obj), PI / 4.0) ;
   }
 
+
+
 ///////////////////////////////////////////////////////////////////
 ///////////////////////// HELPERS /////////////////////////////////
 ///////////////////////////////////////////////////////////////////
-
+/*-------------------------------------------- Douglas Sales LOCALE - 02/10/2015-----------------------------*/
+void forceLocale(){
+  setlocale(LC_ALL, "C");
+  struct lconv *lc;
+  lc=localeconv();
+}
+/*-------------------------------------------- Douglas Sales LOCALE - 02/10/2015-----------------------------*/
 void setup_rulers (int x, int y)
   {
   double world_x1, world_y1, world_x2, world_y2, world_x, world_y ;
@@ -2783,6 +2796,9 @@ static void real_coords_from_rulers (int *px, int *py)
 
 //Douglas Sales Silva 08/13/15
 void placementAndRouting_file_operations (GtkWidget *widget, gpointer user_data){
+  /*-------------------------------------------- Douglas Sales LOCALE - 02/10/2015-----------------------------*/
+    forceLocale();
+  /*-------------------------------------------- Douglas Sales LOCALE - 02/10/2015-----------------------------*/
   int fFileOp = (int)user_data ;
   char *pszFName = NULL, *pszCurrent = (NULL == project_options.pszCurrentFName ? "" : project_options.pszCurrentFName) ;
   if (FILEOP_OPEN == fFileOp || FILEOP_OPEN_RECENT == fFileOp || FILEOP_NEW == fFileOp || FILEOP_CLOSE == fFileOp)
@@ -2801,14 +2817,13 @@ void placementAndRouting_file_operations (GtkWidget *widget, gpointer user_data)
   char completeFileName[1024];
   sprintf(completeFileName, "%s/PRfiles/files/%s.qca", PACKAGE_SOURCE_DIR, fileName);
   printf("%s\n", fileName);
-  //strcat(completeFileName, PACKAGE_SOURCE_DIR);
-  //strcat(completeFileName, "/PRfiles/files/");
-  //strcat(completeFileName, (char*)fileName);
+
   openPlacementFile(completeFileName, fFileOp, pszCurrent, widget);
 }
 
 void openPlacementFile(char* pszFName, int fFileOp, char *pszCurrent, GtkWidget *widget){
-  printf("%s",pszFName);
+
+  printf("%s\n",pszFName);
   DESIGN *the_new_design = NULL ;
   GdkCursor *cursor = NULL ;
   #ifdef STDIO_FILEIO

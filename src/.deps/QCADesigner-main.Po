@@ -547,18 +547,18 @@ QCADesigner-main.o: main.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h callbacks.h interface.h \
- support.h /usr/include/libintl.h /usr/include/locale.h \
- /usr/include/x86_64-linux-gnu/bits/locale.h about.h print.h simulation.h \
- simulation_data.h design.h exp_array.h objects/object_helpers.h \
- objects/../hsl2rgb.h objects/QCADCell.h objects/../gdk_structs.h \
- objects/../exp_array.h objects/QCADDesignObject.h \
- objects/mouse_handler_struct.h objects/object_helpers.h \
- objects/QCADUndoEntry.h objects/QCADLabel.h objects/../exp_pixmap.h \
- objects/QCADStretchyObject.h objects/QCADDesignObject.h \
- objects/QCADSubstrate.h objects/QCADLayer.h vector_table.h \
- objects/QCADPrintDialog.h bistable_simulation.h /usr/include/math.h \
- /usr/include/x86_64-linux-gnu/bits/huge_val.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h callbacks.h \
+ /usr/include/locale.h /usr/include/x86_64-linux-gnu/bits/locale.h \
+ interface.h support.h /usr/include/libintl.h about.h print.h \
+ simulation.h simulation_data.h design.h exp_array.h \
+ objects/object_helpers.h objects/../hsl2rgb.h objects/QCADCell.h \
+ objects/../gdk_structs.h objects/../exp_array.h \
+ objects/QCADDesignObject.h objects/mouse_handler_struct.h \
+ objects/object_helpers.h objects/QCADUndoEntry.h objects/QCADLabel.h \
+ objects/../exp_pixmap.h objects/QCADStretchyObject.h \
+ objects/QCADDesignObject.h objects/QCADSubstrate.h objects/QCADLayer.h \
+ vector_table.h objects/QCADPrintDialog.h bistable_simulation.h \
+ /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/huge_val.h \
  /usr/include/x86_64-linux-gnu/bits/huge_valf.h \
  /usr/include/x86_64-linux-gnu/bits/huge_vall.h \
  /usr/include/x86_64-linux-gnu/bits/inf.h \
@@ -1798,15 +1798,15 @@ QCADesigner-main.o: main.c /usr/include/stdc-predef.h \
 
 callbacks.h:
 
+/usr/include/locale.h:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
 interface.h:
 
 support.h:
 
 /usr/include/libintl.h:
-
-/usr/include/locale.h:
-
-/usr/include/x86_64-linux-gnu/bits/locale.h:
 
 about.h:
 

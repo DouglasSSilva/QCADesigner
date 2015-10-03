@@ -558,9 +558,9 @@ objects/QCADesigner-QCADCell.o: objects/QCADCell.c \
  /usr/include/gtk-2.0/gtk/gtkoldeditable.h \
  /usr/include/gtk-2.0/gtk/gtkoptionmenu.h \
  /usr/include/gtk-2.0/gtk/gtkpreview.h \
- /usr/include/gtk-2.0/gtk/gtktipsquery.h objects/../generic_utils.h \
- objects/../support.h /usr/include/libintl.h /usr/include/locale.h \
- /usr/include/x86_64-linux-gnu/bits/locale.h objects/../global_consts.h \
+ /usr/include/gtk-2.0/gtk/gtktipsquery.h /usr/include/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h objects/../generic_utils.h \
+ objects/../support.h /usr/include/libintl.h objects/../global_consts.h \
  objects/../custom_widgets.h objects/../fileio_helpers.h \
  objects/QCADCell.h objects/../gdk_structs.h objects/../exp_array.h \
  objects/QCADDesignObject.h objects/mouse_handler_struct.h \
@@ -1826,15 +1826,15 @@ objects/../callbacks.h:
 
 /usr/include/gtk-2.0/gtk/gtktipsquery.h:
 
+/usr/include/locale.h:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
 objects/../generic_utils.h:
 
 objects/../support.h:
 
 /usr/include/libintl.h:
-
-/usr/include/locale.h:
-
-/usr/include/x86_64-linux-gnu/bits/locale.h:
 
 objects/../global_consts.h:
 

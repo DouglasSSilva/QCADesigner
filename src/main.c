@@ -62,7 +62,9 @@ int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, char *pszCmd
 // Normally, we have a console
 int main (int argc, char *argv[])
 #endif /* def QCAD_NO_CONSOLE */
-  {
+{
+
+
   GtkWindow *wndAbout = NULL ;
 #ifdef WIN32
 #ifdef QCAD_NO_CONSOLE
@@ -102,5 +104,4 @@ gtk_main ();
 
   // -- Exit -- //
   return 0;
-  }//main
-
+}//main

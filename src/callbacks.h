@@ -28,6 +28,9 @@
 #define _CALLBACKS_H_
 
 #include <gtk/gtk.h>
+/*--------------------------------------------LOCALE Douglas Sales - 02/10/2015-----------------------------*/
+#include <locale.h>
+/*--------------------------------------------LOCALE Douglas Sales - 02/10/2015-----------------------------*/
 
 void add_layer_button_clicked (GtkWidget *widget, gpointer data) ;
 void remove_layer_button_clicked (GtkWidget *widget, gpointer data) ;

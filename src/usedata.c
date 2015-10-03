@@ -24,17 +24,20 @@ const char* convertFile(char* input){
   strcat(useFileName, (const char*)fileName);
 
   //get the qca file name setting in the exact folder to find it
-  strcpy(useFileName,"./PRfiles/files/");
   fgets(fileName, sizeof fileName, inputFile);
   fileName[strlen(fileName) -1] = '\0';
-  strcat(qcaFileName, (const char*)fileName);
+  sprintf(qcaFileName, "%s/PRfiles/files/%s", PACKAGE_SOURCE_DIR, fileName);
 
   //print the header so we identify the file
   useFile = fopen (useFileName,"w");
+
   totalofGates = getTotalofGates(inputFile);
+
   Gate = (qcaUseGate*) malloc(totalofGates*sizeof(qcaUseGate));
+
   printHeader(useFile, useFileName);
   readInput(inputFile, totalofGates, Gate);
+    
   fclose(inputFile);
 
   createUseFile(useFile,totalofGates, Gate);

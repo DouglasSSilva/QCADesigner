@@ -7,7 +7,9 @@ const char* finishedAreas[7] = {"[#TYPE:QCADDesignObject]","[#TYPE:CELL_DOT]", "
 "[#TYPE:QCADStretchyObject]"};
 const char* fixedCells[2] = {"gates/positiveFixed.qca", "gates/negativeFixed.qca"};
 
+
 void getDataCreateFile(char* input, char* output){
+
   FILE* useFile = fopen(input, "r");
   if(useFile == NULL){
     perror("error while opening the file \n");
@@ -155,7 +157,7 @@ void parseGateEspecialCell(int* foundfixed, int gateType, FILE* qcaFile, double*
       printFixedDotArea(fixedGateFile, tempQCAFile, qcaFile, dxdy);
 
     }
-
+  
   }
 
   strcpy(line,  getFileLine(tempQCAFile));
@@ -256,7 +258,7 @@ void parseGateNormalCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
 
      else{
          perror("an error occured while reading the file 2");
-         exit(0);
+         exit(EXIT_FAILURE);
      }
    }
    strcpy(line,  getFileLine(tempQCAFile));
@@ -283,7 +285,7 @@ void parseGateNormalCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
 
        else{
          perror("an error occured while reading the file 5");
-         exit(0);
+         exit(EXIT_FAILURE);
        }
 
        strcpy(line,  getFileLine(tempQCAFile));
@@ -297,11 +299,11 @@ void parseGateNormalCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
      }
      else {
        perror("an error occured while reading the file 4");
-       exit(0);
+       exit(EXIT_FAILURE);
      }
    }
    else {
      perror("an error occured while reading the file 3");
-     exit(0);
+     exit(EXIT_FAILURE);
    }
 }

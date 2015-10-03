@@ -2,24 +2,23 @@
 
 void changeXYData (double *xyData, FILE* qcaFile, FILE* tempQCAFile, char delim){
 
-  int i = 0;
-  char line[100];
+  char line;
   double Axis = 0.0;
   int counter;
   for (counter = 0; counter < 2; counter++){
     //get char by char from line until the delim so we can put the new value
     //after it
-    line[i] = fgetc(tempQCAFile);
-    fputc(line[i],qcaFile);
-    while (line[i] != delim){
-      line[i] = fgetc(tempQCAFile);
-      fputc(line[i],qcaFile);
+    line = fgetc(tempQCAFile);
+    fputc(line,qcaFile);
+    while (line != delim){
+      line = fgetc(tempQCAFile);
+      fputc(line,qcaFile);
     }
     //updating with the new values;
     fscanf(tempQCAFile,"%lf",&Axis);
     Axis += xyData[counter];
     fprintf(qcaFile,"%lf\n",Axis);
-    line[i] = fgetc(tempQCAFile);
+    line = fgetc(tempQCAFile);
   }
 
 }

@@ -558,9 +558,9 @@ QCADesigner-callbacks.o: callbacks.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/nan.h \
  /usr/include/x86_64-linux-gnu/bits/mathdef.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
- /usr/include/x86_64-linux-gnu/bits/mathinline.h callbacks.h interface.h \
- support.h /usr/include/libintl.h /usr/include/locale.h \
- /usr/include/x86_64-linux-gnu/bits/locale.h simulation.h \
+ /usr/include/x86_64-linux-gnu/bits/mathinline.h callbacks.h \
+ /usr/include/locale.h /usr/include/x86_64-linux-gnu/bits/locale.h \
+ interface.h support.h /usr/include/libintl.h simulation.h \
  simulation_data.h design.h exp_array.h objects/object_helpers.h \
  objects/../hsl2rgb.h objects/QCADCell.h objects/../gdk_structs.h \
  objects/../exp_array.h objects/QCADDesignObject.h \
@@ -1841,15 +1841,15 @@ QCADesigner-callbacks.o: callbacks.c /usr/include/stdc-predef.h \
 
 callbacks.h:
 
+/usr/include/locale.h:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
 interface.h:
 
 support.h:
 
 /usr/include/libintl.h:
-
-/usr/include/locale.h:
-
-/usr/include/x86_64-linux-gnu/bits/locale.h:
 
 simulation.h:
 

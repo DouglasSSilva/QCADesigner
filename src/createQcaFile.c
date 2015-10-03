@@ -1,4 +1,5 @@
 #include "createQcaFile.h"
+
 #define cellSize 20;
 #define gridSize 5*cellSize;
 
@@ -8,6 +9,8 @@ const char* finishedAreas[7] = {"[#TYPE:QCADDesignObject]","[#TYPE:CELL_DOT]", "
 const char* fixedCells[2] = {"./PRfiles/gates/positiveFixed.qca", "./PRfiles/gates/negativeFixed.qca"};
 
 void getDataCreateFile(char* input, char* output){
+
+
   FILE* useFile = fopen(input, "r");
   if(useFile == NULL){
     perror("error while opening the file \n");
@@ -23,9 +26,9 @@ void getDataCreateFile(char* input, char* output){
   }
   getUseData(useFile, qcaFile);
   fclose (qcaFile);
-}
+  }
 
-void getUseData(FILE* useFile, FILE* qcaFile){
+  void getUseData(FILE* useFile, FILE* qcaFile){
   QCAData* data;
   int totalofGates;
   fscanf(useFile,"Total of gates: %d\n", &totalofGates);
@@ -39,9 +42,9 @@ void getUseData(FILE* useFile, FILE* qcaFile){
   fprintf(qcaFile, "%s\n",finishedAreas[3] );
   fprintf(qcaFile, "%s\n",finishedAreas[4] );
   //fclose(qcaFile);
-}
+  }
 
-void createQCAFile(FILE* qcaFile, QCAData *data, int totalofGates){
+  void createQCAFile(FILE* qcaFile, QCAData *data, int totalofGates){
   int counter;
   char fname[100];
   double dx = 0.0;
@@ -49,7 +52,7 @@ void createQCAFile(FILE* qcaFile, QCAData *data, int totalofGates){
   double dxdy[2] = {0.0 ,0.0}; //has the new x y positions of the gate
   double fixeddxdy[2] = {0.0, 0.0}; //has the new x y positions of a fixed cell
   FILE* tempQCAFile;
-  tempQCAFile = fopen("gates/header.qca", "r");
+  tempQCAFile = fopen("./PRfiles/gates/header.qca", "r");
 
   if(tempQCAFile == NULL){
     perror("error while opening the header file \n");
@@ -59,7 +62,7 @@ void createQCAFile(FILE* qcaFile, QCAData *data, int totalofGates){
 
   for (counter = 0; counter < totalofGates; counter++){
 
-    strcpy(fname, "gates/");
+    strcpy(fname, "./PRfiles/gates/");
     strcat(fname, data[counter].fileName);
     tempQCAFile = fopen(fname, "r");
 
@@ -87,10 +90,10 @@ void createQCAFile(FILE* qcaFile, QCAData *data, int totalofGates){
     parseGate(tempQCAFile,  qcaFile, dxdy, fixeddxdy, data[counter]);
     fclose(tempQCAFile);
   }
-}
+  }
 
 
-void parseGate(FILE* tempQCAFile, FILE* qcaFile, double* dxdy, double* fixeddxdy, QCAData data){
+  void parseGate(FILE* tempQCAFile, FILE* qcaFile, double* dxdy, double* fixeddxdy, QCAData data){
 
   char line[100];
   double *xyFixedCheck;
@@ -122,10 +125,10 @@ void parseGate(FILE* tempQCAFile, FILE* qcaFile, double* dxdy, double* fixeddxdy
       }
     }
   }
-}
+  }
 
 
-void parseGateEspecialCell(int* foundfixed, int gateType, FILE* qcaFile, double*dxdy,  double* fixeddxdy, FILE* tempQCAFile){
+  void parseGateEspecialCell(int* foundfixed, int gateType, FILE* qcaFile, double*dxdy,  double* fixeddxdy, FILE* tempQCAFile){
 
   FILE* fixedGateFile;
   char line[100];
@@ -153,6 +156,7 @@ void parseGateEspecialCell(int* foundfixed, int gateType, FILE* qcaFile, double*
 
       fprintf(qcaFile, "%s\n", line);
       printFixedDotArea(fixedGateFile, tempQCAFile, qcaFile, dxdy);
+        printf("%s\n",line);
 
     }
 
@@ -162,9 +166,9 @@ void parseGateEspecialCell(int* foundfixed, int gateType, FILE* qcaFile, double*
   fprintf(qcaFile, "%s\n", line);
   fclose(fixedGateFile);
 
-}
+  }
 
-void printQCADesignObject(FILE* tempQCAFile,FILE* qcaFile, double* dxdy){
+  void printQCADesignObject(FILE* tempQCAFile,FILE* qcaFile, double* dxdy){
 
   char line[100];
   fprintUnchanbleLines(tempQCAFile, qcaFile, 4);
@@ -175,22 +179,22 @@ void printQCADesignObject(FILE* tempQCAFile,FILE* qcaFile, double* dxdy){
     strcpy(line,  getFileLine(tempQCAFile));
   }
   fprintf(qcaFile, "%s\n", line);
-}
+  }
 
-void printDotArea(FILE* tempQCAFile,FILE* qcaFile, double* dxdy){
+  void printDotArea(FILE* tempQCAFile,FILE* qcaFile, double* dxdy){
   changeXYData (dxdy, qcaFile, tempQCAFile, '=');
   fprintUnchanbleLines(tempQCAFile, qcaFile, 5);
-}
+  }
 
-void changeDesignObjectLabel(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
+  void changeDesignObjectLabel(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
   changeXYData (dxdy, qcaFile, tempQCAFile, '=');
   fprintUnchanbleLines(tempQCAFile, qcaFile, 4);
   changeXYData (dxdy, qcaFile, tempQCAFile, '=');
   fprintUnchanbleLines(tempQCAFile, qcaFile, 3);
-}
+  }
 
 
-void printFixedDataDesignObject(double *dxdy, FILE* fixedGateFile, FILE* qcaFile, FILE* tempQCAFile){
+  void printFixedDataDesignObject(double *dxdy, FILE* fixedGateFile, FILE* qcaFile, FILE* tempQCAFile){
 
   int counter;
   for(counter = 0; counter < 3; counter++){
@@ -204,10 +208,10 @@ void printFixedDataDesignObject(double *dxdy, FILE* fixedGateFile, FILE* qcaFile
   fprintUnchanbleLines(tempQCAFile, qcaFile, 8);
   printonFixedDataArea(fixedGateFile, qcaFile, tempQCAFile, '=');
 
-}
+  }
 
 
-void printonFixedDataArea(FILE* fixedGateFile, FILE* qcaFile, FILE* tempQCAFile, char delim){
+  void printonFixedDataArea(FILE* fixedGateFile, FILE* qcaFile, FILE* tempQCAFile, char delim){
 
   char line;
   char value[50];
@@ -227,17 +231,17 @@ void printonFixedDataArea(FILE* fixedGateFile, FILE* qcaFile, FILE* tempQCAFile,
   fprintf(qcaFile,"%s",value);
 
 
-}
+  }
 
-void printFixedDotArea(FILE* fixedGateFile, FILE* tempQCAFile,FILE* qcaFile, double* dxdy){
+  void printFixedDotArea(FILE* fixedGateFile, FILE* tempQCAFile,FILE* qcaFile, double* dxdy){
   changeXYData (dxdy, qcaFile, tempQCAFile, '=');
   fprintUnchanbleLines(tempQCAFile, qcaFile, 1);
   printonFixedDataArea(fixedGateFile, qcaFile, tempQCAFile, '=');
   fprintUnchanbleLines(tempQCAFile, qcaFile, 3);
-}
+  }
 
 
-void parseGateNormalCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
+  void parseGateNormalCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
 
   char line[100];
   int dotCounter, totalofDots;
@@ -256,7 +260,7 @@ void parseGateNormalCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
 
      else{
          perror("an error occured while reading the file 2");
-         exit(0);
+         exit(EXIT_FAILURE);
      }
    }
    strcpy(line,  getFileLine(tempQCAFile));
@@ -283,7 +287,7 @@ void parseGateNormalCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
 
        else{
          perror("an error occured while reading the file 5");
-         exit(0);
+         exit(EXIT_FAILURE);
        }
 
        strcpy(line,  getFileLine(tempQCAFile));
@@ -297,11 +301,11 @@ void parseGateNormalCell(FILE* tempQCAFile, FILE* qcaFile, double* dxdy){
      }
      else {
        perror("an error occured while reading the file 4");
-       exit(0);
+       exit(EXIT_FAILURE);
      }
    }
    else {
      perror("an error occured while reading the file 3");
-     exit(0);
+     exit(EXIT_FAILURE);
    }
-}
+  }

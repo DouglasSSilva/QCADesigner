@@ -70,5 +70,6 @@ void redraw_async (GdkRegion *rgn) ;
 void update_cells () ;
 void reflect_zoom () ;
 void redraw_sync (GdkRegion *rgn, gboolean bDestroyRegion) ;
+void forceLocale();
 
 #endif /* _CALLBACK_HELPERS_H_ */
