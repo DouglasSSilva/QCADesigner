@@ -40,7 +40,6 @@ void getUseData(FILE* useFile, FILE* qcaFile){
   free(data);
   fprintf(qcaFile, "%s\n",finishedAreas[3] );
   fprintf(qcaFile, "%s\n",finishedAreas[4] );
-  //fclose(qcaFile);
 }
 
 void createQCAFile(FILE* qcaFile, QCAData *data, int totalofGates){
@@ -57,7 +56,9 @@ void createQCAFile(FILE* qcaFile, QCAData *data, int totalofGates){
     perror("error while opening the header file \n");
     exit(EXIT_FAILURE);
   }
+
   printQcaHeader(tempQCAFile, qcaFile);
+  fclose(tempQCAFile);
 
   for (counter = 0; counter < totalofGates; counter++){
 
@@ -87,7 +88,6 @@ void createQCAFile(FILE* qcaFile, QCAData *data, int totalofGates){
     }
 
     parseGate(tempQCAFile,  qcaFile, dxdy, fixeddxdy, data[counter]);
-    fclose(tempQCAFile);
   }
 }
 
@@ -124,6 +124,7 @@ void parseGate(FILE* tempQCAFile, FILE* qcaFile, double* dxdy, double* fixeddxdy
       }
     }
   }
+  fclose(tempQCAFile);
 }
 
 
@@ -157,7 +158,7 @@ void parseGateEspecialCell(int* foundfixed, int gateType, FILE* qcaFile, double*
       printFixedDotArea(fixedGateFile, tempQCAFile, qcaFile, dxdy);
 
     }
-  
+
   }
 
   strcpy(line,  getFileLine(tempQCAFile));

@@ -55,7 +55,6 @@ void getDatafromUseFile(FILE* useFile, QCAData* data, int totalofGates){
     data[i].fileName = (char*) malloc( (sizeof (char)) * strlen(fName));
     strcpy(data[i].fileName, fName);
     memmove(data[i].fileName, data[i].fileName+1, strlen(data[i].fileName));
-
   }
 }
 void printQcaHeader(FILE* tempQCAFile, FILE* qcaFile){
@@ -69,7 +68,6 @@ void printQcaHeader(FILE* tempQCAFile, FILE* qcaFile){
     fprintf(qcaFile, "%s",line);
     counter++;
   }
-  fclose(tempQCAFile);
 }
 
 

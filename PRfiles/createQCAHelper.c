@@ -69,7 +69,6 @@ void printQcaHeader(FILE* tempQCAFile, FILE* qcaFile){
     fprintf(qcaFile, "%s",line);
     counter++;
   }
-  fclose(tempQCAFile);
 }
 
 
